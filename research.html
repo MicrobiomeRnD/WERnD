@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Microbiome Trends</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+        }
+
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .topbar h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .back-link {
+            color: #bfdbfe;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 18px;
+            padding: 1.4rem;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-bottom: 0.6rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(191, 219, 254, 0.16);
+            color: #bfdbfe;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card h2 {
+            margin: 0 0 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .card p {
+            margin: 0;
+            line-height: 1.7;
+            color: #cbd5e1;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 680px;
+        }
+
+        th, td {
+            padding: 0.85rem 0.9rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            vertical-align: top;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .row-badge {
+            display: inline-block;
+            padding: 0.24rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(147, 197, 253, 0.16);
+            color: #bfdbfe;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .topic-cell {
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .meta-cell {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .paper-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.45rem 0.7rem;
+            border-radius: 999px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .paper-link:hover {
+            background: #1d4ed8;
+        }
+
+        .note {
+            margin-top: 1rem;
+            padding: 0.8rem 0.9rem;
+            border-radius: 12px;
+            background: rgba(59, 130, 246, 0.14);
+            color: #dbeafe;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="topbar">
+            <h1>Research</h1>
+            <a class="back-link" href="index.html">메인으로 돌아가기</a>
+        </div>
+
+        <div class="card">
+            <span class="tag">ScienceDirect Review Focus</span>
+            <h2>미생물·프로바이오틱스·슬로우 에이징·뷰티 서플리먼트의 최신 연구동향</h2>
+            <p>최근 논문과 review abstract에서 자주 반복되는 핵심은, 장내 미생물군이 면역·염증·대사·피부 건강과 깊게 연결된다는 점입니다. 아래는 요약된 연구 방향입니다.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>분야</th>
+                            <th>핵심 내용</th>
+                            <th>대표 논문</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="row-badge">Microbiome</span></td>
+                            <td class="meta-cell">장내 미생물군이 대사·염증·면역 조절의 중심 축으로 작동하며, 섬유질 섭취와 발효식품, 단쇄지방산(SCFA) 생성 미생물의 역할이 중요한 주제로 강조되고 있습니다.</td>
+                            <td><a class="paper-link" href="https://www.sciencedirect.com/search?qs=gut%20microbiome%20review" target="_blank" rel="noopener noreferrer">대표 논문 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Probiotics</span></td>
+                            <td class="meta-cell">균주별 특이적 효과가 강조되고 있으며, Lactobacillus와 Bifidobacterium 기반 제제가 장 기능 개선, 소화, 면역 반응, 피로감 완화에 긍정적 영향을 줄 수 있다는 연구 흐름이 지속적으로 확대되고 있습니다.</td>
+                            <td><a class="paper-link" href="https://www.sciencedirect.com/search?qs=probiotics%20review" target="_blank" rel="noopener noreferrer">대표 논문 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Slow Aging</span></td>
+                            <td class="meta-cell">장-뇌-면역 축과 세포 노화 경로를 연결하는 연구가 늘며, 미생물 군집의 변화를 통해 염증과 산화스트레스, 삶의 질에 대한 영향을 평가하는 접근이 주목받고 있습니다.</td>
+                            <td><a class="paper-link" href="https://www.sciencedirect.com/search?qs=gut%20microbiota%20aging%20review" target="_blank" rel="noopener noreferrer">대표 논문 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Beauty</span></td>
+                            <td class="meta-cell">피부 미생물과 장-피부 축의 연관성이 주목받고 있고, collagen, probiotic, 항산화 성분을 포함한 oral supplement가 피부 보습, 탄력, 염증 완화에 도움을 줄 수 있다는 방향이 증가하고 있습니다.</td>
+                            <td><a class="paper-link" href="https://www.sciencedirect.com/search?qs=skin%20microbiome%20probiotics%20review" target="_blank" rel="noopener noreferrer">대표 논문 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">참고 사이트</span></td>
+                            <td class="meta-cell">소화와 장 건강 관련 정보를 더 깊이 보고 싶을 때 참고할 수 있는 외부 리소스입니다.</td>
+                            <td><a class="paper-link" href="https://digestioncoach.com/" target="_blank" rel="noopener noreferrer">사이트 방문</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card" style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.06);">
+                <h2 style="font-size: 1.05rem; margin-bottom: 0.6rem;">DigestionCoach 최근 6개월 연구 흐름 요약</h2>
+                <p style="margin-bottom: 0.7rem; color: #cbd5e1;">최근 6개월간 다뤄진 핵심 주제는 장 건강과 전신 기능의 연결성을 중심으로 정리됩니다.</p>
+                <ul style="margin: 0; padding-left: 1.1rem; color: #e2e8f0; line-height: 1.8;">
+                    <li><strong>장내 미생물과 IBS 증상:</strong> 장내 세균군의 변화와 히스타민 반응이 복부 통증, 가스, 과민성 장 증상과 연결될 수 있다는 관점이 제시됩니다.</li>
+                    <li><strong>CIRS 및 회복의 복잡성:</strong> 회복 과정이 단순한 식이 조절이나 생활 습관 개선으로 끝나지 않고, 기저 질환·염증·면역 반응을 함께 고려해야 한다는 메시지가 강조됩니다.</li>
+                    <li><strong>장-뇌 축과 소화 증상:</strong> 소화 증상이 위장 기능만의 문제가 아니라 스트레스, 신경-면역 반응, 전신 상태와 연동된다는 해석이 중심입니다.</li>
+                    <li><strong>노화와 건강의 생물학적 맥락:</strong> 노화 관련 연구를 통해 장 건강, 염증 조절, 회복력 간의 연관성을 설명하는 흐름이 확인됩니다.</li>
+                </ul>
+            </div>
+
+            <div class="note">
+                참고: 이 페이지는 최신 ScienceDirect 논문/리뷰 abstract와 DigestionCoach의 최근 게시물 흐름을 함께 반영한 요약본입니다.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights - Shorts Video Collection</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            color: #111827;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .topbar h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .back-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(148,163,184,0.24);
+            border-radius: 18px;
+            padding: 1.4rem;
+            box-shadow: 0 10px 26px rgba(15,23,42,0.08);
+            margin-bottom: 1rem;
+        }
+
+        .card h2 {
+            margin: 0 0 0.4rem;
+            font-size: 1.15rem;
+        }
+
+        .card p {
+            margin: 0;
+            line-height: 1.7;
+            color: #4b5563;
+        }
+
+        .section-title {
+            margin: 0 0 0.8rem;
+            font-size: 1.05rem;
+            color: #1f2937;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            background: #ffffff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 680px;
+        }
+
+        th, td {
+            padding: 0.85rem 0.9rem;
+            text-align: left;
+            border-bottom: 1px solid #eef2f7;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f8fafc;
+            color: #334155;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        tbody tr:hover {
+            background: #f8fbff;
+        }
+
+        .row-badge {
+            display: inline-block;
+            padding: 0.24rem 0.55rem;
+            border-radius: 999px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .topic-cell {
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .meta-cell {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .play-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 999px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .play-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .play-btn::before {
+            content: "▶";
+            font-size: 0.85rem;
+        }
+
+        .note {
+            margin-top: 0.8rem;
+            padding: 0.8rem 0.9rem;
+            border-radius: 12px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="topbar">
+            <h1>Insights</h1>
+            <a class="back-link" href="index.html">메인으로 돌아가기</a>
+        </div>
+
+        <div class="card">
+            <h2>Shorts 중심 최신 영상 모음</h2>
+            <p>Supplement, 건강기능식품, 미생물/프로바이오틱스 관련 Shorts 중 최근 등록된 콘텐츠와 조회수 높은 영상을 정리한 섹션입니다.</p>
+
+            <h3 class="section-title">최신 등록된 영상 (최대 5개)</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>분류</th>
+                            <th>주제</th>
+                            <th>설명</th>
+                            <th>바로가기</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="row-badge">Recent</span></td>
+                            <td class="topic-cell">건강기능식품</td>
+                            <td class="meta-cell">건강기능식품, 정말 효과 있을까?</td>
+                            <td><a class="play-btn" href="https://www.youtube.com/results?search_query=%EA%B1%B4%EA%B0%95%EA%B8%B0%EB%8A%A5%EC%8B%9D%ED%92%88+shorts" target="_blank" rel="noopener noreferrer">Shorts 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Recent</span></td>
+                            <td class="topic-cell">프로바이오틱스</td>
+                            <td class="meta-cell">프로바이오틱스, 언제 먹는 게 가장 좋을까?</td>
+                            <td><a class="play-btn" href="https://www.youtube.com/results?search_query=%ED%94%84%EB%A1%9C%EB%B0%94%EC%9D%B4%EC%98%A4%ED%8B%B1%EC%8A%A4+shorts" target="_blank" rel="noopener noreferrer">Shorts 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Recent</span></td>
+                            <td class="topic-cell">장 건강</td>
+                            <td class="meta-cell">장 건강을 위한 supplement 핵심 포인트</td>
+                            <td><a class="play-btn" href="https://www.youtube.com/results?search_query=%EC%9E%A5+%EA%B1%B4%EA%B0%95+supplement+shorts" target="_blank" rel="noopener noreferrer">Shorts 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Recent</span></td>
+                            <td class="topic-cell">피부 미생물</td>
+                            <td class="meta-cell">피부 미생물과 supplement의 연결고리</td>
+                            <td><a class="play-btn" href="https://www.youtube.com/results?search_query=%ED%94%BC%EB%B6%80+%EB%AF%B8%EC%83%9D%EB%AC%BC+shorts" target="_blank" rel="noopener noreferrer">Shorts 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Recent</span></td>
+                            <td class="topic-cell">슬로우 에이징</td>
+                            <td class="meta-cell">슬로우 에이징을 위한 식단과 보충제</td>
+                            <td><a class="play-btn" href="https://www.youtube.com/results?search_query=%EC%8A%AC%EB%A1%9C%EC%9A%B0+%EC%97%90%EC%9D%B4%EC%A7%95+shorts" target="_blank" rel="noopener noreferrer">Shorts 보기</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="section-title">조회수 높은 영상 (최대 5개)</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>분류</th>
+                            <th>주제</th>
+                            <th>설명</th>
+                            <th>바로가기</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="row-badge">Popular</span></td>
+                            <td class="topic-cell">체중 관리</td>
+                            <td class="meta-cell">프로바이오틱스가 체중 관리에 도움이 될까?</td>
+                            <td><a class="play-btn" href="https://www.youtube.com/results?search_query=%ED%94%84%EB%A1%9C%EB%B0%94%EC%9D%B4%EC%98%A4%ED%8B%B1%EC%8A%A4+%EC%B2%B4%EC%9C%A1+shorts" target="_blank" rel="noopener noreferrer">Shorts 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Popular</span></td>
+                            <td class="topic-cell">식이섬유</td>
+                            <td class="meta-cell">장 건강을 지키는 식이섬유와 supplement</td>
+                            <td><a class="play-btn" href="https://www.youtube.com/results?search_query=%EC%9E%A5+%EA%B1%B4%EA%B0%95+%EC%8B%9D%EC%9D%B4%EC%84%AC%EC%9C%A0+shorts" target="_blank" rel="noopener noreferrer">Shorts 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Popular</span></td>
+                            <td class="topic-cell">뷰티 트렌드</td>
+                            <td class="meta-cell">피부 미생물과 건강기능식품의 최신 트렌드</td>
+                            <td><a class="play-btn" href="https://www.youtube.com/results?search_query=%ED%94%BC%EB%B6%80+%EB%AF%B8%EC%83%9D%EB%AC%BC+%EA%B1%B4%EA%B0%95%EA%B8%B0%EB%8A%A5%EC%8B%9D%ED%92%88+shorts" target="_blank" rel="noopener noreferrer">Shorts 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Popular</span></td>
+                            <td class="topic-cell">면역력</td>
+                            <td class="meta-cell">면역력 높이는 supplement, 어떤 걸 봐야 하나?</td>
+                            <td><a class="play-btn" href="https://www.youtube.com/results?search_query=%EB%A9%B4%EC%97%AD%EB%A0%A5+supplement+shorts" target="_blank" rel="noopener noreferrer">Shorts 보기</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="row-badge">Popular</span></td>
+                            <td class="topic-cell">미생물 기반</td>
+                            <td class="meta-cell">미생물 기반 건강기능식품, 왜 주목받나?</td>
+                            <td><a class="play-btn" href="https://www.youtube.com/results?search_query=%EB%AF%B8%EC%83%9D%EB%AC%BC+%EA%B1%B4%EA%B0%95%EA%B8%B0%EB%8A%A5%EC%8B%9D%ED%92%88+shorts" target="_blank" rel="noopener noreferrer">Shorts 보기</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note">업데이트 주기는 3일에 한 번입니다. 실시간 조회수는 YouTube API 없이 정적 예시로 구성되어 있으며, 향후 API 연동 시 실제 최신/인기 영상으로 자동 갱신할 수 있습니다.</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microbiome R&D Center</title>
+    <title>Microbiome R&D Center </title>
     <style>
         body {
             margin: 0;
             min-height: 100dvh;
             padding: 2rem 1rem;
             box-sizing: border-box;
-            background: #0f172a;
+            background: #1E2637;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: #f8fafc;
             display: flex;
@@ -34,7 +34,30 @@
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            min-height: 560px;
+            min-height: 560px;          
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .corner-character {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+
+            width: 100px !important;
+            max-width: 100px !important;
+            height: auto !important;
+
+            display: block;
+            object-fit: contain;
+
+            opacity: 0.95;
+            pointer-events: none;
+            z-index: 1;
+
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
         }
 
         .panel h2,
@@ -46,7 +69,7 @@
         }
 
         .panel h1 {
-            font-size: clamp(2rem, 3.5vw, 3.5rem);
+            font-size: clamp(2.8rem, 3.1vw, 3.1rem);
         }
 
         .panel h2 {
@@ -60,6 +83,8 @@
             align-items: flex-start;
             gap: 1rem;
             padding-top: 1.5rem;
+
+            margin: 0 auto;      /* 가운데 정렬 */
         }
 
         .bacteria-illustration {
@@ -75,22 +100,38 @@
         }
 
         .panel-logo {
-            max-width: 220px;
+            max-width: 110px;
             width: 100%;
             height: auto;
             border-radius: 12px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.35);
             align-self: flex-start;
+            margin-top: 50px;      /* 추가 */
             margin-bottom: -0.5rem;
+
         }
 
-        .wellness-logo {
-            width: 160px;
-            height: auto;
-            align-self: flex-end;
-            margin-top: -1rem;
-            opacity: 0.98;
-        }
+
+         .corner-charater {
+             
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
+    width: 30px !important;
+    max-width: 100px !important;
+    height: auto !important;
+
+    display: block;
+    object-fit: contain;
+
+    opacity: 0.95;
+    pointer-events: none;
+    z-index: 1;
+
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
 
         .panel .title-wrap {
             padding-top: 3rem;
@@ -168,6 +209,23 @@
             gap: 1.25rem;
         }
 
+        .youtube-container {
+            width: 100%;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .youtube-container iframe {
+            width: 100%;
+            max-width: 400px;
+            height: 600px;
+            border-radius: 16px;
+            border: none;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+
         @media (max-width: 900px) {
             .container {
                 grid-template-columns: 1fr;
@@ -200,9 +258,11 @@
         <div class="container">
             <section class="panel">
                 <div class="title-wrap">
-                    <img class="panel-logo" src="assets/attached-design.png" alt="Microbiome design">
+                    <img class="panel-logo" src="logo.png" alt="Microbiome R&D Center Logo">
                     <a href="https://blog.naver.com/dr_microbiome" target="_blank" rel="noopener noreferrer">
-                        <h1>Microbiome R&D Center</h1>
+                        <h1>Microbiome<br>
+                            R&D Center
+                        </h1>
                     </a>
                 </div>
                 <div class="contents">
@@ -212,39 +272,21 @@
                     <a href="https://blog.naver.com/PostList.naver?blogId=dr_microbiome&from=postList&categoryNo=16" target="_blank" rel="noopener noreferrer">Microbiome science</a>
                     <a href="https://blog.naver.com/PostList.naver?blogId=dr_microbiome&from=postList&categoryNo=10" target="_blank" rel="noopener noreferrer">Gut Health</a>
                 </div>
+            
+            <img class="corner-character" src="MB연구원.png" alt="Microbiome Researcher">
+          
             </section>
 
             <section class="panel">
                 <div class="panel-card">
-                    <svg class="wellness-logo" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <defs>
-                            <linearGradient id="bifiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#9ea7ad"/>
-                                <stop offset="100%" stop-color="#7c838a"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="120" cy="70" r="64" fill="rgba(108, 117, 125, 0.12)"/>
-                        <path d="M62 82c0-9 20-34 40-34 23 0 36 26 54 26 18 0 34-18 48-12" fill="none" stroke="#7f868c" stroke-width="8" stroke-linecap="round"/>
-                        <path d="M58 62c6-18 32-34 46-20 14 14 12 48 32 50s42-38 52-20" fill="none" stroke="#7f868c" stroke-width="8" stroke-linecap="round"/>
-                        <path d="M76 102c14-18 38-20 54-10 16 10 20 34 36 28" fill="none" stroke="#7f868c" stroke-width="8" stroke-linecap="round"/>
-                        <path d="M54 88c12-18 32-24 48-18 14 6 26 20 36 18s26-18 38-12" fill="none" stroke="#7f868c" stroke-width="8" stroke-linecap="round"/>
-                        <path d="M86 48c12-10 26-12 42-8" fill="none" stroke="#7f868c" stroke-width="8" stroke-linecap="round"/>
-                        <path d="M92 68c10 8 24 10 34 2" fill="none" stroke="#7f868c" stroke-width="8" stroke-linecap="round"/>
-                        <path d="M112 90c12 0 18 8 24 14" fill="none" stroke="#7f868c" stroke-width="6" stroke-linecap="round"/>
-                        <path d="M134 44c10 4 20 14 20 24" fill="none" stroke="#b0bac4" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
-                        <circle cx="80" cy="58" r="6" fill="#a3adb7" opacity="0.85"/>
-                        <circle cx="108" cy="78" r="6" fill="#a3adb7" opacity="0.85"/>
-                        <circle cx="136" cy="62" r="6" fill="#a3adb7" opacity="0.85"/>
-                    </svg>
-                    <h2>Wellness R&D Center</h2>
                     <div class="slots">
                         <a class="slot" href="trends.html">
                             <p class="slot-title">Trends</p>
-                            <p class="slot-label">최신 연구 및 시장 동향</p>
+                            <p class="slot-label">연구 및 시장 동향</p>
                         </a>
                         <a class="slot" href="research.html">
                             <p class="slot-title">Research</p>
-                            <p class="slot-label">자세한 연구 동향 확인</p>
+                            <p class="slot-label">연구 동향 확인</p>
                         </a>
                         <a class="slot" href="insights.html">
                             <p class="slot-title">Insights</p>

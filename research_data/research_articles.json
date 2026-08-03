@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-05T09:00:00+09:00",
+  "period": {
+    "start": "2026-07-29",
+    "end": "2026-08-04"
+  },
+  "areas": {
+    "microbiome": {
+      "label": "Microbiome",
+      "articles": [
+        {
+          "id": "pmid-42497358",
+          "title": "Microbiome and chronic pelvic pain in women: a mini-review.",
+          "authors": ["Vibert J", "Stojanov M", "Da Silva T", "Baud D", "Pluchino N"],
+          "authors_short": "Vibert et al.",
+          "journal": "Human Reproduction",
+          "published_date": "2026-07-24",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42497358",
+            "doi": "10.1093/humrep/deag110"
+          },
+          "one_line_description": "This mini-review examines how dysbiosis across gut and pelvic microbial ecosystems may contribute to chronic pelvic pain through immune, endocrine, barrier, and neuroimmune pathways.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42497358/"
+        },
+        {
+          "id": "pmid-42521607",
+          "title": "Causal associations between gut microbiota and inflammatory factors in neonatal jaundice: a Mendelian randomization study.",
+          "authors": ["Li Y", "Chen Y", "Huang X", "Yang J", "Zhou Z", "Ma X", "Zeng L"],
+          "authors_short": "Li et al.",
+          "journal": "Journal of Maternal-Fetal & Neonatal Medicine",
+          "published_date": "2026-07-28",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42521607",
+            "doi": "10.1080/14767058.2026.2709189"
+          },
+          "one_line_description": "This Mendelian randomization study investigates potential causal links among gut microbial taxa, inflammatory factors, and neonatal jaundice.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42521607/"
+        },
+        {
+          "id": "pmid-42496113",
+          "title": "Resistant starch types 2 and 4 induce distinct and reversible changes in the human gut microbiome.",
+          "authors": ["Piperni E", "Blanco-Míguez A", "Mengoni C", "Piccinno G", "Punčochář M", "Ren J", "Segata N", "Asnicar F", "Poole AC"],
+          "authors_short": "Piperni et al.",
+          "journal": "Microbiology Spectrum",
+          "published_date": "2026-07-24",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42496113",
+            "doi": "10.1128/spectrum.00763-26"
+          },
+          "one_line_description": "The study compares how resistant starch types 2 and 4 produce distinct, reversible shifts in the composition and function of the human gut microbiome.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42496113/"
+        },
+        {
+          "id": "pmid-42520323",
+          "title": "Gut microbiota metabolites and microbiota-targeted interventions in bone metabolism: from SCFAs and TMAO to probiotics and FMT.",
+          "authors": ["Huang Z", "Li Z", "Wu F", "Zhou D"],
+          "authors_short": "Huang et al.",
+          "journal": "Postgraduate Medical Journal",
+          "published_date": "2026-07-28",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42520323",
+            "doi": "10.1093/postmj/qgag099"
+          },
+          "one_line_description": "This article connects microbial metabolites such as SCFAs and TMAO with bone metabolism and considers probiotics and fecal microbiota transplantation as targeted interventions.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42520323/"
+        },
+        {
+          "id": "pmid-42505077",
+          "title": "A Comprehensive Microbial Gene Catalog of the Human Airway Microbiome Across Anatomical Sites and Geographic Regions.",
+          "authors": ["Zhang Q", "Li D", "Liu B", "Zhang Y", "Li M", "Guo R", "Ni Y", "Chen S", "Ni B", "Qiu L", "Xing G", "Dong H", "Yan Q", "Li S", "Zou X", "Cao B"],
+          "authors_short": "Zhang et al.",
+          "journal": "Advanced Science",
+          "published_date": "2026-07-27",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42505077",
+            "doi": "10.1002/advs.76589"
+          },
+          "one_line_description": "Researchers build a microbial gene catalog to characterize variation in the human airway microbiome across anatomical locations and geographic populations.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42505077/"
+        }
+      ]
+    },
+    "probiotics": {
+      "label": "Probiotics",
+      "articles": [
+        {
+          "id": "pmid-42497250",
+          "title": "Energy-assisted CRISPR cleavage and probiotic vesicle signaling platform: Microbiome reprogramming for homeostasis.",
+          "authors": ["Zhou Z", "Yang Y", "Zhou F", "Liang K", "Gong T", "Zhou X", "Li J", "Luo J", "Li J", "Yang J"],
+          "authors_short": "Zhou et al.",
+          "journal": "Science Advances",
+          "published_date": "2026-07-24",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42497250",
+            "doi": "10.1126/sciadv.aef1760"
+          },
+          "one_line_description": "The study presents a CRISPR cleavage and probiotic-vesicle signaling platform designed to reprogram microbial communities and restore microbiome homeostasis.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42497250/"
+        },
+        {
+          "id": "pmid-42501277",
+          "title": "Lacticaseibacillus Strains Shape Intestinal Immune Homeostasis by Promoting Antimicrobial Activity and Modulating Antigen-Presenting Cells.",
+          "authors": ["Monteros MJM", "Galdeano CM", "Perdigón G", "Matar C", "Cazorla SI"],
+          "authors_short": "Monteros et al.",
+          "journal": "Probiotics and Antimicrobial Proteins",
+          "published_date": "2026-07-25",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42501277",
+            "doi": "10.1007/s12602-026-11146-z"
+          },
+          "one_line_description": "Two Lacticaseibacillus strains strengthened intestinal defenses by promoting antimicrobial peptide production, epithelial barrier markers, and balanced immune responses in mice.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42501277/"
+        },
+        {
+          "id": "pmid-42501074",
+          "title": "Combined Supplementation with Streptococcus Thermophilus Yilife-SST 01 and Bifidobacterium Bifidum BL-99 Mitigates Unloading-Induced Osteoporosis in Rats.",
+          "authors": ["Guo L", "Li B", "Liu S", "Wang R", "He J", "Wescombe PA", "Sun Y", "Hou B", "Wang S"],
+          "authors_short": "Guo et al.",
+          "journal": "Current Microbiology",
+          "published_date": "2026-07-25",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42501074",
+            "doi": "10.1007/s00284-026-05072-0"
+          },
+          "one_line_description": "Combined Streptococcus thermophilus and Bifidobacterium bifidum supplementation is evaluated for its ability to reduce unloading-induced bone loss in rats.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42501074/"
+        },
+        {
+          "id": "pmid-42494331",
+          "title": "Milk-delivered postbiotics from Bifidobacterium animalis subsp. lactis BB-12 modulate the gut microbiota-SCFA-immune axis in rats compared to probiotic delivery.",
+          "authors": ["Akan E", "Yaylagul EO", "Yavaş A", "Dikme M", "Gezgin S", "Erbay Z"],
+          "authors_short": "Akan et al.",
+          "journal": "Food & Function",
+          "published_date": "2026-07-24",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42494331",
+            "doi": "10.1039/d6fo01905f"
+          },
+          "one_line_description": "The rat study compares milk-delivered BB-12 postbiotics with live probiotic delivery and their effects on the gut microbiota, short-chain fatty acids, and immune responses.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42494331/"
+        },
+        {
+          "id": "pmid-42520140",
+          "title": "Effect of probiotics on humoral responses to COVID-19 vaccination in older adults: a randomized, placebo-controlled trial (PIRATES-COV study).",
+          "authors": ["Pasquier JC", "Chaillet N", "Plourde M", "Boivin G", "Hamelin MÈ", "Allard-Chamard H", "Piché A", "Baron G", "Laforest-Lapointe I", "Généreux M", "Mâsse B", "Robitaille J", "Beaulieu JF", "Fülöp T", "Bilodeau S", "Ramanathan S"],
+          "authors_short": "Pasquier et al.",
+          "journal": "Gut Microbes",
+          "published_date": "2026-07-28",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42520140",
+            "doi": "10.1080/19490976.2026.2699456"
+          },
+          "one_line_description": "This randomized placebo-controlled trial tests whether probiotic supplementation alters antibody responses to COVID-19 vaccination in older adults.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42520140/"
+        }
+      ]
+    },
+    "slow_aging": {
+      "label": "Slow Aging",
+      "articles": []
+    },
+    "beauty": {
+      "label": "Beauty",
+      "articles": [
+        {
+          "id": "pmid-42497358",
+          "title": "Microbiome and chronic pelvic pain in women: a mini-review.",
+          "authors": ["Vibert J", "Stojanov M", "Da Silva T", "Baud D", "Pluchino N"],
+          "authors_short": "Vibert et al.",
+          "journal": "Human Reproduction",
+          "published_date": "2026-07-24",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42497358",
+            "doi": "10.1093/humrep/deag110"
+          },
+          "one_line_description": "This mini-review examines how dysbiosis across gut and pelvic microbial ecosystems may contribute to chronic pelvic pain through immune, endocrine, barrier, and neuroimmune pathways.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42497358/"
+        },
+        {
+          "id": "pmid-42501277",
+          "title": "Lacticaseibacillus Strains Shape Intestinal Immune Homeostasis by Promoting Antimicrobial Activity and Modulating Antigen-Presenting Cells.",
+          "authors": ["Monteros MJM", "Galdeano CM", "Perdigón G", "Matar C", "Cazorla SI"],
+          "authors_short": "Monteros et al.",
+          "journal": "Probiotics and Antimicrobial Proteins",
+          "published_date": "2026-07-25",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42501277",
+            "doi": "10.1007/s12602-026-11146-z"
+          },
+          "one_line_description": "Two Lacticaseibacillus strains strengthened intestinal defenses by promoting antimicrobial peptide production, epithelial barrier markers, and balanced immune responses in mice.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42501277/"
+        },
+        {
+          "id": "pmid-42496842",
+          "title": "Therapeutic potential of polygonatum polysaccharides in modulating gut microbiota and alleviating psoriasis-like inflammation in a mouse model.",
+          "authors": ["Zhou Y", "Yang Z", "Zhou P", "Wang Z", "Peng M", "Wang M", "Zeng B"],
+          "authors_short": "Zhou et al.",
+          "journal": "Molecular and Cellular Biochemistry",
+          "published_date": "2026-07-24",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42496842",
+            "doi": "10.1007/s11010-026-05654-3"
+          },
+          "one_line_description": "Polygonatum polysaccharides reduced psoriasis-like skin inflammation in mice while restoring gut microbial diversity and altering taxa associated with disease severity.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42496842/"
+        },
+        {
+          "id": "pmid-42515971",
+          "title": "Gut microbiota links to infection in liver transplantation.",
+          "authors": ["Hinkle C", "Friedman D", "Lehmann CJ"],
+          "authors_short": "Hinkle et al.",
+          "journal": "Current Opinion in Organ Transplantation",
+          "published_date": "2026-07-28",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42515971",
+            "doi": "10.1097/mot.0000000000001304"
+          },
+          "one_line_description": "The article reviews how gut dysbiosis, loss of microbial metabolites, and weakened colonization resistance may increase infection risk after liver transplantation.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42515971/"
+        },
+        {
+          "id": "pmid-42517538",
+          "title": "Dietary Habits and Atopic Dermatitis Significantly Influence the Fecal Microbiome.",
+          "authors": ["Fehr D", "Flack N", "Masenga G", "Mosha N", "Li N", "White A", "Semango G", "Distler M", "Lang C", "Grimm F", "Scharl M", "Mavura D", "Masenga JE", "Schmid-Grendelmeier P", "Brüggen MC"],
+          "authors_short": "Fehr et al.",
+          "journal": "Allergy",
+          "published_date": "2026-07-28",
+          "article_type": "Journal Article",
+          "identifiers": {
+            "pmid": "42517538",
+            "doi": "10.1111/all.70459"
+          },
+          "one_line_description": "A case-control metagenomics study finds that atopic dermatitis and geographically associated dietary habits contribute to differences in the adult fecal microbiome.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42517538/"
+        }
+      ]
+    }
+  }
+}

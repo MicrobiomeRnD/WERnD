@@ -146,6 +146,12 @@
             color: #dbeafe;
             font-size: 0.95rem;
         }
+
+        .data-error {
+            margin: 0.75rem 0 0;
+            color: #fca5a5;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
@@ -158,7 +164,8 @@
         <div class="card">
             <span class="tag">ScienceDirect Review Focus</span>
             <h2>미생물·프로바이오틱스·슬로우 에이징·뷰티 서플리먼트의 최신 연구동향</h2>
-            <p>최근 논문과 review abstract에서 자주 반복되는 핵심은, 장내 미생물군이 면역·염증·대사·피부 건강과 깊게 연결된다는 점입니다. 아래는 요약된 연구 방향입니다.</p>
+            <p id="research-overview">최근 논문과 review abstract에서 자주 반복되는 핵심은, 장내 미생물군이 면역·염증·대사·피부 건강과 깊게 연결된다는 점입니다. 아래는 요약된 연구 방향입니다.</p>
+            <p id="research-data-error" class="data-error" role="status" hidden>최신 연구동향을 불러오지 못해 기본 내용을 표시합니다.</p>
 
             <div class="table-wrap">
                 <table>
@@ -172,23 +179,23 @@
                     <tbody>
                         <tr>
                             <td><span class="row-badge">Microbiome</span></td>
-                            <td class="meta-cell">장내 미생물군이 대사·염증·면역 조절의 중심 축으로 작동하며, 섬유질 섭취와 발효식품, 단쇄지방산(SCFA) 생성 미생물의 역할이 중요한 주제로 강조되고 있습니다.</td>
-                            <td><a class="paper-link" href="https://www.sciencedirect.com/search?qs=gut%20microbiome%20review" target="_blank" rel="noopener noreferrer">대표 논문 보기</a></td>
+                            <td id="microbiome-summary" class="meta-cell">장내 미생물군이 대사·염증·면역 조절의 중심 축으로 작동하며, 섬유질 섭취와 발효식품, 단쇄지방산(SCFA) 생성 미생물의 역할이 중요한 주제로 강조되고 있습니다.</td>
+                            <td><a class="paper-link" href="research_articles.html?area=microbiome">대표 논문 보기</a></td>
                         </tr>
                         <tr>
                             <td><span class="row-badge">Probiotics</span></td>
-                            <td class="meta-cell">균주별 특이적 효과가 강조되고 있으며, Lactobacillus와 Bifidobacterium 기반 제제가 장 기능 개선, 소화, 면역 반응, 피로감 완화에 긍정적 영향을 줄 수 있다는 연구 흐름이 지속적으로 확대되고 있습니다.</td>
-                            <td><a class="paper-link" href="https://www.sciencedirect.com/search?qs=probiotics%20review" target="_blank" rel="noopener noreferrer">대표 논문 보기</a></td>
+                            <td id="probiotics-summary" class="meta-cell">균주별 특이적 효과가 강조되고 있으며, Lactobacillus와 Bifidobacterium 기반 제제가 장 기능 개선, 소화, 면역 반응, 피로감 완화에 긍정적 영향을 줄 수 있다는 연구 흐름이 지속적으로 확대되고 있습니다.</td>
+                            <td><a class="paper-link" href="research_articles.html?area=probiotics">대표 논문 보기</a></td>
                         </tr>
                         <tr>
                             <td><span class="row-badge">Slow Aging</span></td>
-                            <td class="meta-cell">장-뇌-면역 축과 세포 노화 경로를 연결하는 연구가 늘며, 미생물 군집의 변화를 통해 염증과 산화스트레스, 삶의 질에 대한 영향을 평가하는 접근이 주목받고 있습니다.</td>
-                            <td><a class="paper-link" href="https://www.sciencedirect.com/search?qs=gut%20microbiota%20aging%20review" target="_blank" rel="noopener noreferrer">대표 논문 보기</a></td>
+                            <td id="slow-aging-summary" class="meta-cell">장-뇌-면역 축과 세포 노화 경로를 연결하는 연구가 늘며, 미생물 군집의 변화를 통해 염증과 산화스트레스, 삶의 질에 대한 영향을 평가하는 접근이 주목받고 있습니다.</td>
+                            <td><a class="paper-link" href="research_articles.html?area=slow_aging">대표 논문 보기</a></td>
                         </tr>
                         <tr>
                             <td><span class="row-badge">Beauty</span></td>
-                            <td class="meta-cell">피부 미생물과 장-피부 축의 연관성이 주목받고 있고, collagen, probiotic, 항산화 성분을 포함한 oral supplement가 피부 보습, 탄력, 염증 완화에 도움을 줄 수 있다는 방향이 증가하고 있습니다.</td>
-                            <td><a class="paper-link" href="https://www.sciencedirect.com/search?qs=skin%20microbiome%20probiotics%20review" target="_blank" rel="noopener noreferrer">대표 논문 보기</a></td>
+                            <td id="beauty-summary" class="meta-cell">피부 미생물과 장-피부 축의 연관성이 주목받고 있고, collagen, probiotic, 항산화 성분을 포함한 oral supplement가 피부 보습, 탄력, 염증 완화에 도움을 줄 수 있다는 방향이 증가하고 있습니다.</td>
+                            <td><a class="paper-link" href="research_articles.html?area=beauty">대표 논문 보기</a></td>
                         </tr>
                         <tr>
                             <td><span class="row-badge">참고 사이트</span></td>
@@ -215,5 +222,6 @@
             </div>
         </div>
     </div>
+    <script src="research.js" defer></script>
 </body>
 </html>

@@ -3,8 +3,14 @@
 
 ## 1. Sync the main branch
 ```powershell
-git checkout main
-git pull origin main
+# check status
+git status
+
+# move to main branch
+git switch main
+
+# update your local main branch to the latest GitHub main
+git pull --ff-only origin main
 ```
 
 ## 2. Create a branch to contain your today's new update 
@@ -12,12 +18,13 @@ git pull origin main
 ### In the examples below, I assume that I created a new branch with a name 'update-research-page'
 ```powershell
 git checkout -b update-research-page
+git switch -c update-research-page
 ```
 
 ## 3. Commit after you make changes. Do this in small chunks.
 ```powershell
 git add .
-git commit -m "move research page scripts"
+git commit -m "write your own message (example: move research page scripts)"
 ```
 
 ## 4. Push the branch you made to the online repository

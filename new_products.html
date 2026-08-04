@@ -59,7 +59,7 @@
 </main>
 
 <!-- file:// 로 직접 열 때 브라우저의 JSON fetch 제한에 대비한 보조 데이터입니다. -->
-<script src="mfds_products_data.js"></script>
+<script src="new_products_data/mfds_products_data.js"></script>
 <script>
 (() => {
     "use strict";
@@ -146,7 +146,7 @@
 
     async function load() {
         try {
-            const response = await fetch(`mfds_products.json?v=${Date.now()}`, { cache: "no-store" });
+            const response = await fetch(`new_products_data/mfds_products.json?v=${Date.now()}`, { cache: "no-store" });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             render(await response.json(), "");
         } catch (error) {

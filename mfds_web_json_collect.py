@@ -1,7 +1,10 @@
 import requests
 import json
 import time
-from datetime import datetime
+import argparse
+import calendar
+import os
+from datetime import date, datetime
 
 # ============================================
 # MFDS 건강기능식품 종합정보 서비스 Ajax URL
@@ -11,17 +14,60 @@ LIST_PAGE_URL = "https://data.mfds.go.kr/hid/opbaa01/prdtSrchLst.do"
 AJAX_URL = "https://data.mfds.go.kr/hid/opbaa01/prdtSrchLstSelect.do"
 
 # 수집 설정
-START_PAGE = 1
-END_PAGE = 5
-
-# 처음에는 5페이지 정도만 테스트 권장
-# 정상 작동 확인 후 END_PAGE를 100, 500 등으로 늘리세요.
-
+DEFAULT_MAX_PRODUCTS = 200
 RECORD_COUNT_PER_PAGE = 10
 
-# 저장 파일명
-RAW_JSON_FILE = "mfds_raw_response.json"
-PRODUCT_JSON_FILE = "mfds_products.json"
+# 기본 저장 위치는 이 스크립트 기준 new_products_data 폴더입니다.
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_OUTPUT_DIR = os.path.join(SCRIPT_DIR, "new_products_data")
+RAW_JSON_BASENAME = "mfds_raw_response.json"
+PRODUCT_JSON_BASENAME = "mfds_products.json"
+PRODUCT_JS_BASENAME = "mfds_products_data.js"
+
+
+def positive_int(value):
+    number = int(value)
+    if number < 1:
+        raise argparse.ArgumentTypeError("1 이상의 정수를 입력해야 합니다.")
+    return number
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="MFDS 신규 건강기능식품 데이터를 수집합니다."
+    )
+    parser.add_argument(
+        "--max-products",
+        type=positive_int,
+        default=DEFAULT_MAX_PRODUCTS,
+        metavar="N",
+        help=f"수집할 최대 제품 수 (기본값: {DEFAULT_MAX_PRODUCTS})"
+    )
+    parser.add_argument(
+        "--outdir",
+        default=DEFAULT_OUTPUT_DIR,
+        metavar="DIRPATH",
+        help="출력 폴더 (기본값: 스크립트 옆 new_products_data)"
+    )
+    return parser.parse_args()
+
+
+def months_ago(day, months):
+    """day에서 달력 기준 months개월 전 날짜를 반환합니다."""
+    month_index = day.year * 12 + day.month - 1 - months
+    year, zero_based_month = divmod(month_index, 12)
+    month = zero_based_month + 1
+    return date(year, month, min(day.day, calendar.monthrange(year, month)[1]))
+
+
+def product_date(item):
+    value = item.get("rptYmd")
+    if not value:
+        return None
+    try:
+        return datetime.strptime(str(value)[:10], "%Y-%m-%d").date()
+    except ValueError:
+        return None
 
 
 def make_session():
@@ -150,20 +196,32 @@ def find_product_list(data):
 
 
 def main():
+    args = parse_args()
+    end_date = date.today()
+    start_date = months_ago(end_date, 3)
+    output_dir = os.path.abspath(os.path.expanduser(args.outdir))
+    raw_json_file = os.path.join(output_dir, RAW_JSON_BASENAME)
+    product_json_file = os.path.join(output_dir, PRODUCT_JSON_BASENAME)
+    product_js_file = os.path.join(output_dir, PRODUCT_JS_BASENAME)
+
     print("MFDS 건강기능식품 데이터 수집 시작")
     print("Ajax URL:", AJAX_URL)
+    print(f"등록일 범위: {start_date} ~ {end_date}")
+    print(f"최대 제품 수: {args.max_products:,}개")
+    print("출력 폴더:", output_dir)
 
     session = make_session()
 
     all_raw = []
     all_products = []
+    page = 1
 
-    for page in range(START_PAGE, END_PAGE + 1):
+    while len(all_products) < args.max_products:
         data = fetch_page(session, page)
 
         if data is None:
             print(f"{page} 페이지 수집 실패")
-            continue
+            break
 
         all_raw.append({
             "page": page,
@@ -174,25 +232,51 @@ def main():
 
         print(f"{page} 페이지 제품 수:", len(products))
 
+        if not products:
+            print("더 이상 제품이 없어 수집을 종료합니다.")
+            break
+
+        dated_products = []
         for item in products:
             if isinstance(item, dict):
-                item["_page"] = page
-                all_products.append(item)
+                registered = product_date(item)
+                if registered is not None:
+                    dated_products.append(registered)
+                if registered is not None and start_date <= registered <= end_date:
+                    item["_page"] = page
+                    all_products.append(item)
+                    if len(all_products) >= args.max_products:
+                        break
 
+        if not dated_products:
+            print("등록일을 해석할 수 없어 수집을 종료합니다.")
+            break
+
+        # 목록이 최신순이라는 전제에서 한 페이지 전체가 시작일보다 오래되면 종료합니다.
+        if dated_products and max(dated_products) < start_date:
+            print("3개월 수집 범위를 벗어나 수집을 종료합니다.")
+            break
+
+        page += 1
         time.sleep(0.5)
 
     result = {
         "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "source": LIST_PAGE_URL,
         "ajax_url": AJAX_URL,
-        "start_page": START_PAGE,
-        "end_page": END_PAGE,
+        "start_date": start_date.isoformat(),
+        "end_date": end_date.isoformat(),
+        "start_page": 1,
+        "end_page": page,
         "record_count_per_page": RECORD_COUNT_PER_PAGE,
+        "max_products": args.max_products,
         "total_collected_products": len(all_products),
         "products": all_products
     }
 
-    with open(RAW_JSON_FILE, "w", encoding="utf-8") as f:
+    os.makedirs(output_dir, exist_ok=True)
+
+    with open(raw_json_file, "w", encoding="utf-8") as f:
         json.dump(
             all_raw,
             f,
@@ -200,7 +284,7 @@ def main():
             indent=2
         )
 
-    with open(PRODUCT_JSON_FILE, "w", encoding="utf-8") as f:
+    with open(product_json_file, "w", encoding="utf-8") as f:
         json.dump(
             result,
             f,
@@ -208,10 +292,21 @@ def main():
             indent=2
         )
 
+    with open(product_js_file, "w", encoding="utf-8") as f:
+        f.write("window.mfdsProductsData = ")
+        json.dump(
+            result,
+            f,
+            ensure_ascii=False,
+            indent=2
+        )
+        f.write(";\n")
+
     print("====================================")
     print("수집 완료")
-    print("Raw 응답 저장:", RAW_JSON_FILE)
-    print("제품 목록 저장:", PRODUCT_JSON_FILE)
+    print("Raw 응답 저장:", raw_json_file)
+    print("제품 목록 저장:", product_json_file)
+    print("로컬 fallback 저장:", product_js_file)
     print("총 수집 제품 수:", len(all_products))
     print("====================================")
 

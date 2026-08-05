@@ -74,7 +74,7 @@
     function categoryOf(product) {
         const value = [product.ftnltClsfCdNm, product.PRIMARY_FNCLTY, product.FNCLTY_CN]
             .filter(Boolean).join(" ").toLowerCase();
-        if (/장 건강|유산균|프로바이오틱/.test(value)) return "probiotic";
+        if (/장 건강|장|유산균|프로바이오틱/.test(value)) return "probiotic";
         if (/체지방|다이어트|비만/.test(value)) return "diet";
         if (/관절|연골|뼈 건강/.test(value)) return "joint";
         if (/눈 건강|시력|루테인/.test(value)) return "eye";

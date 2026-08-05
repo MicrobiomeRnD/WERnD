@@ -41,7 +41,9 @@
         <h2>월별 기능성 분류</h2>
         <div class="table-wrap">
             <table>
-                <thead><tr><th>월</th><th>장 건강</th><th>체지방</th><th>관절</th><th>눈</th><th>면역</th><th>혈압/혈행</th><th>수면</th><th>기타</th></tr></thead>
+                <thead>
+                <tr id="functionHeader"></tr>
+                </thead>
                 <tbody id="functionTable"></tbody>
             </table>
         </div>
@@ -64,25 +66,78 @@
 (() => {
     "use strict";
     const $ = id => document.getElementById(id);
-    const categories = ["probiotic", "diet", "joint", "eye", "immunity", "blood", "sleep", "etc"];
+    const categories = [
+    "multi",
+    "probiotic",
+    "diet",
+    "joint",
+    "eye",
+    "immunity",
+    "cognitive",
+    "triglyceride",
+    "bloodflow",
+    "cholesterol",
+    "bloodpressure",
+    "sleep",
+    "etc"
+];
 
     function text(value, fallback = "-") {
         const result = value == null ? "" : String(value).trim();
         return result || fallback;
     }
 
-    function categoryOf(product) {
-        const value = [product.ftnltClsfCdNm, product.PRIMARY_FNCLTY, product.FNCLTY_CN]
-            .filter(Boolean).join(" ").toLowerCase();
-        if (/장 건강|장|유산균|프로바이오틱/.test(value)) return "probiotic";
-        if (/체지방|다이어트|비만/.test(value)) return "diet";
-        if (/관절|연골|뼈 건강/.test(value)) return "joint";
-        if (/눈 건강|시력|루테인/.test(value)) return "eye";
-        if (/면역/.test(value)) return "immunity";
-        if (/혈압|혈행|혈중|콜레스테롤/.test(value)) return "blood";
-        if (/수면/.test(value)) return "sleep";
-        return "etc";
-    }
+function categoryKeysOf(product) {
+
+    const value = [
+        product.ftnltClsfCdNm,
+        product.PRIMARY_FNCLTY,
+        product.FNCLTY_CN
+    ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+    let matched = [];
+
+    if (/장 건강|장|유산균|프로바이오틱/.test(value))
+        matched.push("probiotic");
+
+    if (/체지방|다이어트|비만/.test(value))
+        matched.push("diet");
+
+    if (/관절|연골|뼈 건강/.test(value))
+        matched.push("joint");
+
+    if (/눈 건강|눈|시력|루테인/.test(value))
+        matched.push("eye");
+
+    if (/면역/.test(value))
+        matched.push("immunity");
+
+    if (/인지기능|기억력/.test(value))
+        matched.push("cognitive");
+
+    if (/혈중 중성지방|중성지방/.test(value))
+        matched.push("triglyceride");
+
+    if (/혈행/.test(value))
+        matched.push("bloodflow");
+
+    if (/콜레스테롤/.test(value))
+        matched.push("cholesterol");
+
+    if (/혈압/.test(value))
+        matched.push("bloodpressure");
+
+    if (/수면/.test(value))
+        matched.push("sleep");
+
+    if (matched.length >= 2)
+        matched.unshift("multi");
+
+    return matched.length ? matched : ["etc"];
+}
 
     function monthOf(product) {
         const date = text(product.rptYmd || product.등록일자 || product.PRDLST_REPORT_DATE, "");
@@ -107,7 +162,10 @@
             const month = monthOf(product);
             if (!month || !stats[month]) continue;
             counts[month]++;
-            stats[month][categoryOf(product)]++;
+            const keys = categoryKeysOf(product);
+            for (const key of keys) {
+                stats[month][key]++;
+        }
         }
 
         const summaryMonths = months;
@@ -124,9 +182,45 @@
         }));
 
         if (!summaryMonths.length) $("summary").innerHTML = '<div class="card empty">표시할 등록일 데이터가 없습니다.</div>';
-        $("functionTable").innerHTML = months.length ? months.map(month =>
-            `<tr><td>${month}</td>${categories.map(key => `<td>${stats[month][key]}</td>`).join("")}</tr>`
-        ).join("") : '<tr><td class="empty" colspan="9">표시할 데이터가 없습니다.</td></tr>';
+        const rowInfo = [
+    ["total", "총 제품수"],
+    ["multi", "다중기능성"],
+    ["probiotic", "장 건강"],
+    ["diet", "체지방"],
+    ["joint", "관절"],
+    ["eye", "눈"],
+    ["immunity", "면역"],
+    ["cognitive", "인지기능/기억력"],
+    ["triglyceride", "혈중 중성지방"],
+    ["bloodflow", "혈행"],
+    ["cholesterol", "콜레스테롤"],
+    ["bloodpressure", "혈압"],
+    ["sleep", "수면"],
+    ["etc", "기타"]
+];
+
+$("functionHeader").innerHTML =
+    "<th>기능성</th>" +
+    months.map(month => `<th>${month}</th>`).join("");
+
+$("functionTable").innerHTML =
+rowInfo.map(([key,label]) => `
+<tr class="${
+    key === "total" || key === "multi"
+        ? "highlight-row"
+        : ""
+}">
+<td>${label}</td>
+${months.map(month =>
+    `<td>${
+        key === "total"
+            ? counts[month]
+            : stats[month][key]
+    }</td>`
+).join("")}
+</tr>
+`).join("");
+
 
         const table = $("productTable");
         table.replaceChildren();

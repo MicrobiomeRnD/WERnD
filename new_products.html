@@ -25,7 +25,7 @@
     .table-wrap { overflow-x: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
     .topbar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
     gap: 1rem;
@@ -61,13 +61,10 @@
 </style>
 </head>
 <body>
-    <div class="page">
-        <div class="topbar">
-            <a class="back-link" href="index.html">메인으로 돌아가기</a>
-        </div>
-</div>
-
 <main class="container">
+    <div class="topbar">
+        <a class="back-link" href="index.html">메인으로 돌아가기</a>
+    </div>
     <h1>건강기능식품 신규 등록 현황</h1>
     <p id="dataMeta" class="meta" aria-live="polite">데이터를 불러오는 중입니다.</p>
 

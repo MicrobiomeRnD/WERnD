@@ -14,7 +14,7 @@ LIST_PAGE_URL = "https://data.mfds.go.kr/hid/opbaa01/prdtSrchLst.do"
 AJAX_URL = "https://data.mfds.go.kr/hid/opbaa01/prdtSrchLstSelect.do"
 
 # 수집 설정
-DEFAULT_MAX_PRODUCTS = 200
+DEFAULT_MAX_PRODUCTS = 10000
 RECORD_COUNT_PER_PAGE = 10
 
 # 기본 저장 위치는 이 스크립트 기준 new_products_data 폴더입니다.

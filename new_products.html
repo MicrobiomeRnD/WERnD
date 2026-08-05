@@ -33,6 +33,12 @@
     #productTable td:nth-child(2), #productTable td:nth-child(3), #productTable td:nth-child(4) { text-align: left; }
     .empty { padding: 28px; color: #667085; }
     .error { color: #b42318; }
+    .percent {
+    color: #667085;
+    font-size: 0.85em;
+    font-weight: normal;
+}
+    
     @media (max-width: 700px) {
         .container { padding: 20px 12px; }
         .summary { grid-template-columns: 1fr; gap: 12px; }
@@ -220,13 +226,28 @@ rowInfo.map(([key,label]) => `
         : ""
 }">
 <td>${label}</td>
-${months.map(month =>
-    `<td>${
-        key === "total"
-            ? counts[month]
-            : stats[month][key]
-    }</td>`
-).join("")}
+${months.map(month => {
+
+    if (key === "total") {
+        return `<td>${counts[month]}</td>`;
+    }
+
+    const value = stats[month][key];
+    const total = counts[month];
+
+    const percent =
+        total > 0
+            ? ((value / total) * 100).toFixed(1)
+            : "0.0";
+
+    return `
+        <td>
+            ${value}
+            <span class="percent">(${percent}%)</span>
+        </td>
+    `;
+
+}).join("")}
 </tr>
 `).join("");
 

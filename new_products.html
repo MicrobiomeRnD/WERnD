@@ -5,9 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>건강기능식품 신규 등록 현황</title>
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css");
+
     :root { color-scheme: light; --brand: #0b4f6c; --line: #e5e7eb; }
     * { box-sizing: border-box; }
-    body { font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; background: #f5f7fa; margin: 0; color: #333; }
+    html { font-family: "Inter", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+    body { font-family: inherit; background: #f5f7fa; margin: 0; color: #333; }
+    button, input, select, textarea, table { font: inherit; }
     .container { max-width: 1400px; margin: auto; padding: 30px; }
     h1, h2 { color: var(--brand); }
     h1 { margin-bottom: 8px; }
@@ -21,6 +26,10 @@
     table { width: 100%; border-collapse: collapse; background: white; }
     th { background: var(--brand); color: white; padding: 12px; white-space: nowrap; }
     td { padding: 10px; border-bottom: 1px solid var(--line); text-align: center; }
+    #functionTable .highlight-row > td {
+        background-color: #fff7d6;
+        font-weight: 700;
+    }
     #productTable td:nth-child(2), #productTable td:nth-child(3), #productTable td:nth-child(4) { text-align: left; }
     .empty { padding: 28px; color: #667085; }
     .error { color: #b42318; }

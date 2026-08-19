@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Updates - New Product News</title>
+    <title>일본건강시장 - 건강미용EXPO 뉴스</title>
     <style>
         body {
             margin: 0;
@@ -103,10 +103,6 @@
             background: #f8fbff;
         }
 
-        .product-item {
-            cursor: pointer;
-        }
-
         .row-badge {
             display: inline-block;
             padding: 0.24rem 0.55rem;
@@ -196,6 +192,39 @@
             font-size: 0.95rem;
         }
 
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .summary-card {
+            padding: 1rem;
+            border: 1px solid #dce8de;
+            border-radius: 14px;
+            background: #ffffff;
+        }
+
+        .summary-card strong {
+            display: block;
+            margin-top: 0.3rem;
+            color: #1f2937;
+            font-size: 1.35rem;
+        }
+
+        .summary-label {
+            color: #6b7280;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .source-note {
+            margin: -0.25rem 0 1.2rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
         .tabs {
             display: flex;
             gap: 0.5rem;
@@ -265,128 +294,137 @@
         .trend-item a:hover {
             text-decoration: underline;
         }
+
+        @media (max-width: 700px) {
+            .page {
+                padding: 2rem 1rem 3rem;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .control-buttons {
+                width: 100%;
+            }
+
+            .control-buttons button {
+                flex: 1;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="page">
         <div class="topbar">
-            <h1>Updates</h1>
+            <div>
+                <h1>일본건강시장</h1>
+                <p class="summary-text">건강미용EXPO 뉴스의 최신 건강·미용 산업 소식</p>
+            </div>
             <a class="back-link" href="index.html">메인으로 돌아가기</a>
         </div>
 
-        <div class="controls">
-            <input id="searchInput" type="text" placeholder="제품명/키워드 검색" />
-            <div class="control-buttons">
-                <button type="button" id="expandAllBtn">모두 펼치기</button>
-                <button type="button" id="collapseAllBtn">모두 접기</button>
+        <div class="summary-grid" aria-label="업데이트 요약">
+            <div class="summary-card">
+                <span class="summary-label">표시 뉴스</span>
+                <strong id="totalCount">7건</strong>
             </div>
+            <div class="summary-card">
+                <span class="summary-label">최신 게시일</span>
+                <strong id="latestDate">2026.08.19</strong>
+            </div>
+            <div class="summary-card">
+                <span class="summary-label">원문 사이트</span>
+                <strong>건강미용EXPO</strong>
+            </div>
+        </div>
+
+        <div class="controls">
+            <input id="searchInput" type="text" placeholder="뉴스 제목·키워드 검색" aria-label="뉴스 검색" />
         </div>
         <div class="tabs">
             <button type="button" class="tab-btn active" data-filter="all">전체</button>
-            <button type="button" class="tab-btn" data-filter="health">건강식품</button>
-            <button type="button" class="tab-btn" data-filter="ingredient">원료</button>
-            <button type="button" class="tab-btn" data-filter="regulation">제도</button>
-            <button type="button" class="tab-btn" data-filter="research">연구</button>
+            <button type="button" class="tab-btn" data-filter="news">건강·미용 뉴스</button>
+            <button type="button" class="tab-btn" data-filter="administration">행정 뉴스</button>
+            <button type="button" class="tab-btn" data-filter="release">뉴스 릴리스</button>
+            <button type="button" class="tab-btn" data-filter="research">원료·연구</button>
         </div>
-        <div class="summary-text" id="summaryText">총 4개 제품 · 클릭하면 상세 정보 확인</div>
+        <div class="summary-text" id="summaryText">총 7건의 뉴스 · 원문 링크를 통해 상세 내용을 확인할 수 있습니다.</div>
 
         <div class="card">
-            <span class="tag">뉴스</span>
-            <h2>건강기능식품 최신 뉴스</h2>
-            <p>건강식품·원료·OEM 관련 최신 이슈를 뉴스형으로 정리한 섹션입니다.</p>
+            <span class="tag">건강미용EXPO 뉴스</span>
+            <h2>건강·미용 산업 최신 뉴스</h2>
+            <p>건강식품, 미용, 원료, 기능성 표시 제도와 관련된 건강미용EXPO 뉴스의 주요 기사를 정리했습니다.</p>
             <div class="product-list">
                 <div class="table-wrap">
                     <table>
                         <thead>
                             <tr>
-                                <th>분류</th>
-                                <th>제품/이슈</th>
-                                <th>핵심 포인트</th>
-                                <th>링크</th>
+                                <th>구분</th>
+                                <th>날짜</th>
+                                <th>뉴스 제목</th>
+                                <th>원문</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="product-item" data-category="health">
-                                <td><span class="row-badge">건강식품</span></td>
-                                <td class="topic-cell">나노형 유산균 원료 기반 제품</td>
-                                <td class="meta-cell">임상 근거와 원료 경쟁력을 동시에 강조한 제품이 OEM·브랜드 양측에서 관심을 받고 있습니다.</td>
-                                <td><a class="link-btn" href="https://news.e-expo.net/news/2026/04/2600414_n01.html/" target="_blank" rel="noopener noreferrer">뉴스 보기</a></td>
-                            </tr>
-                            <tr class="product-item" data-category="ingredient">
-                                <td><span class="row-badge">원료</span></td>
-                                <td class="topic-cell">혈당 관리 목적의 커피형 식품</td>
-                                <td class="meta-cell">식후 혈당 반응을 고려한 원료와 함께, 소비자 친화적인 제형이 새롭게 주목받고 있습니다.</td>
-                                <td><a class="link-btn" href="https://news.e-expo.net/news/2026/07/260715_r02.html/" target="_blank" rel="noopener noreferrer">뉴스 보기</a></td>
-                            </tr>
-                        </tbody>
+                        <tbody id="productTable"></tbody>
                     </table>
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <span class="tag">뉴스</span>
-            <h2>기능성표시품 최신 뉴스</h2>
-            <p>기능성표시품과 관련된 최신 제품·연구·제도 이슈를 정리한 섹션입니다.</p>
-            <div class="product-list">
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>분류</th>
-                                <th>제품/이슈</th>
-                                <th>핵심 포인트</th>
-                                <th>링크</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="product-item" data-category="regulation">
-                                <td><span class="row-badge">원료</span></td>
-                                <td class="topic-cell">원료 기반의 스킨케어형 기능성 식품</td>
-                                <td class="meta-cell">식품과 화장품의 경계에서, 원료의 기능성을 강조한 제품이 글로벌 프레젠테이션에서 주목받고 있습니다.</td>
-                                <td><a class="link-btn" href="https://news.e-expo.net/news/2026/01/2600126_n01.html/" target="_blank" rel="noopener noreferrer">뉴스 보기</a></td>
-                            </tr>
-                            <tr class="product-item" data-category="research">
-                                <td><span class="row-badge">연구</span></td>
-                                <td class="topic-cell">PRISMA2020 기준에 맞춘 제안</td>
-                                <td class="meta-cell">임상·시스템리뷰 기반의 데이터가 구체화되며, 규제 대응형 제품 구조가 점점 정교해지고 있습니다.</td>
-                                <td><a class="link-btn" href="https://news.e-expo.net/news/2025/02/2500218_n01.html/" target="_blank" rel="noopener noreferrer">뉴스 보기</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <span class="tag">공지</span>
-            <h2>업데이트 포인트</h2>
-            <p>이 페이지는 Updates 항목을 클릭했을 때 열리는 신제품 소식 요약 페이지입니다. 향후 제품별 상세 정보와 출시 일정도 추가할 수 있습니다.</p>
-            <div class="update-cycle">업데이트 주기: 1주일에 2번</div>
+            <span class="tag">Source</span>
+            <h2>원문 사이트</h2>
+            <p>전체 뉴스와 카테고리별 목록은 건강미용EXPO 뉴스에서 확인할 수 있습니다.</p>
+            <div class="update-cycle"><a href="https://news.e-expo.net/" target="_blank" rel="noopener noreferrer">건강미용EXPO 뉴스 방문하기</a></div>
         </div>
     </div>
     <script>
-        var productItems = Array.from(document.querySelectorAll('.product-item'));
+        var newsItems = [
+            { category: 'release', label: '뉴스 릴리스', date: '2026.08.19', title: '바커스, 엽산 보충제 「새콤한 엽산 conocoto」 신제품 출시', detail: '맛있게 씹어 먹는 츄어블 타입으로 임신 준비부터 출산 후까지 종합 지원', url: 'https://news.e-expo.net/release/2026/08/260819-2.html/' },
+            { category: 'release', label: '뉴스 릴리스', date: '2026.08.19', title: '기능성 표시 식품 「야쿠르트 면역 밸런스」 출시', detail: '면역 기능 유지와 장내 환경 개선 기능이 보고된 제품', url: 'https://news.e-expo.net/release/2026/08/260819.html/' },
+            { category: 'release', label: '뉴스 릴리스', date: '2026.08.18', title: '긴장을 풀어주는 입욕제 「미마이 바스」 신제품 출시', detail: '온천 미네랄과 일본 전통 식물, 천연 정유를 활용한 입욕제', url: 'https://news.e-expo.net/release/2026/08/260818-2.html/' },
+            { category: 'release', label: '뉴스 릴리스', date: '2026.08.18', title: '「와타시노 치카라® 환원형 코엔자임 Q10 구미」 멜론소다 맛 출시', detail: '환원형 코엔자임 Q10 구미의 멜론소다 맛 신제품', url: 'https://news.e-expo.net/release/2026/08/260818.html/' },
+            { category: 'administration', label: '행정 뉴스', date: '2026.08.18', title: '기능성 표시 식품 신고 업데이트 「폴리코사놀 간 기능 서포트」 등', detail: '소비자청 기능성 표시 식품 신고 정보 20건 추가', url: 'https://news.e-expo.net/gyousei/2026/08/260818_g01.html/' },
+            { category: 'news research', label: '원료·연구', date: '2026.04.15', title: '숯 플러스 라보, 규소 원료 독자 제조법 특허 취득', detail: '국산 대나무와 후지산 용천수 유래 규소를 나노 이온화하는 기술', url: 'https://news.e-expo.net/news/new-art/2026/04/2600415_n01.html/' },
+            { category: 'news research', label: '원료·연구', date: '2026.04.14', title: 'IHM, 나노형 유산균 nEF® 기능성 표시 식품 신고 수리', detail: 'PRISMA2020에 대응하는 새로운 양식으로 기능성 표시 식품 신고 수리', url: 'https://news.e-expo.net/news/2026/04/2600414_n01.html/' }
+        ];
         var searchInput = document.getElementById('searchInput');
         var summaryText = document.getElementById('summaryText');
         var activeFilter = 'all';
+        var productItems = [];
+
+        function renderProducts() {
+            var table = document.getElementById('productTable');
+            table.replaceChildren();
+            newsItems.forEach(function (news) {
+                var row = document.createElement('tr');
+                row.className = 'product-item';
+                row.dataset.category = news.category;
+                row.innerHTML = '<td><span class="row-badge">' + news.label + '</span></td>'
+                    + '<td class="meta-cell">' + news.date + '</td>'
+                    + '<td><div class="topic-cell">' + news.title + '</div><div class="meta-cell">' + news.detail + '</div></td>'
+                    + '<td><a class="link-btn" href="' + news.url + '" target="_blank" rel="noopener noreferrer">원문 보기</a></td>';
+                table.appendChild(row);
+            });
+            productItems = Array.from(document.querySelectorAll('.product-item'));
+            applyFilter();
+        }
 
         function getItemCategory(item) {
-            var category = item.getAttribute('data-category') || 'all';
-            if (category === 'health' || category === 'functional') {
-                return 'health';
-            }
-            if (category === 'ingredient' || category === 'research' || category === 'regulation') {
-                return category;
-            }
-            return 'all';
+            return (item.getAttribute('data-category') || 'all').split(' ');
         }
 
         function updateSummary() {
             var visibleCount = productItems.filter(function (item) {
                 return item.style.display !== 'none';
             }).length;
-            summaryText.textContent = '총 ' + visibleCount + '개 제품 · 클릭하면 상세 정보 확인';
+            summaryText.textContent = '총 ' + visibleCount + '건의 뉴스 · 원문 링크를 통해 상세 내용을 확인할 수 있습니다.';
         }
 
         function applyFilter() {
@@ -395,7 +433,7 @@
 
             productItems.forEach(function (item) {
                 var text = item.textContent.toLowerCase();
-                var categoryMatch = activeFilter === 'all' || getItemCategory(item) === activeFilter;
+                var categoryMatch = activeFilter === 'all' || getItemCategory(item).indexOf(activeFilter) !== -1;
                 var match = text.indexOf(query) !== -1 && categoryMatch;
                 item.style.display = match ? '' : 'none';
                 if (match) {
@@ -403,24 +441,8 @@
                 }
             });
 
-            summaryText.textContent = '총 ' + visibleCount + '개 제품 · 클릭하면 상세 정보 확인';
+            summaryText.textContent = '총 ' + visibleCount + '건의 뉴스 · 원문 링크를 통해 상세 내용을 확인할 수 있습니다.';
         }
-
-        productItems.forEach(function (item) {
-            item.addEventListener('click', function () {
-                if (this.style.display === 'none') {
-                    return;
-                }
-
-                productItems.forEach(function (otherItem) {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('open');
-                    }
-                });
-
-                this.classList.toggle('open');
-            });
-        });
 
         searchInput.addEventListener('input', applyFilter);
 
@@ -435,21 +457,8 @@
             });
         });
 
-        document.getElementById('expandAllBtn').addEventListener('click', function () {
-            productItems.forEach(function (item) {
-                if (item.style.display !== 'none') {
-                    item.classList.add('open');
-                }
-            });
-        });
-
-        document.getElementById('collapseAllBtn').addEventListener('click', function () {
-            productItems.forEach(function (item) {
-                item.classList.remove('open');
-            });
-        });
-
-        updateSummary();
+        document.getElementById('totalCount').textContent = newsItems.length + '건';
+        renderProducts();
     </script>
 </body>
 </html>

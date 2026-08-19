@@ -10,7 +10,8 @@ from datetime import datetime
 
 SERVICE_KEY = "sW7R7mOPQruqii2aJGOeeETyUzgleUynjg0sBpB9+mxYT+PjN1xZ9L2Op5tdZ9nqe5VT3PYlxA/yxGEAX6ThrQ=="
 
-BASE_URL = "http://apis.data.go.kr/1471000/HtfsInfoService03/getHtfsList01"
+BASE_URL = "https://apis.data.go.kr/1471000/HtfsInfoService03/getHtfsList01"
+``
 
 START_DATE = "2026-06-01"
 END_DATE = "2026-08-31"

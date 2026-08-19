@@ -67,7 +67,8 @@
         }
 
         .panel h1 {
-            font-size: clamp(2.8rem, 3.1vw, 3.1rem);
+            font-size: clamp(2.0rem, 3vw, 2.8rem);
+            line-height : 1;
         }
 
         .panel h2 {
@@ -104,7 +105,7 @@
             border-radius: 12px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.35);
             align-self: flex-start;
-            margin-top: 50px;      /* 추가 */
+            margin-top: 00px;      /* 추가 */
             margin-bottom: -0.5rem;
 
         }
@@ -203,6 +204,26 @@
             box-shadow: 0 12px 30px rgba(0,0,0,0.25);
         }
 
+        .macplan-link {
+            position: absolute;
+            right: 120px;
+            bottom: 20px;
+            z-index: 10;
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        .macplan-link:hover {
+            transform: scale(1.03);
+        }
+
+        .macplan-logo {
+            width: 160px;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+        }
+
         @media (max-width: 900px) {
             .container {
                 grid-template-columns: 1fr;
@@ -227,6 +248,20 @@
                 transform: none;
                 width: 160px;
                 margin-bottom: -1.5rem;
+            }
+
+            .panel h1 {
+                font-size: 2.2rem;
+                line-height: 1.1;                
+            }
+
+            .macplan-link {
+                right: 110px;
+                bottom: 18px;
+            }
+
+            .macplan-logo {
+                width: 140px;
             }
         }
         </style>
@@ -280,6 +315,14 @@
                     </div>
                 </div>
 
+                        <a href="https://byocore.co.kr/category/맥플랜-쉐이크/85/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="macplan-link">
+                            <img src="MACPLAN.png"
+                                 alt="MACPLAN"
+                                 class="macplan-logo">
+                        </a>
             
             <img class="corner-character" src="기현이_배경제거.png" alt="Bio informatics Researcher">
 

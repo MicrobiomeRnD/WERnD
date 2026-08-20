@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기능성 원료 - 건강식품공전</title>
+    <style>
+        :root { --navy: #16324f; --blue: #2563eb; --line: #d7dee8; --muted: #64748b; }
+        * { box-sizing: border-box; }
+        body { margin: 0; color: #1f2937; background: linear-gradient(135deg, #f4f7fb 0%, #eef5f2 100%); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", sans-serif; }
+        .page { width: min(100% - 2rem, 1320px); margin: 0 auto; padding: 2.5rem 0 4rem; }
+        .topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+        h1, h2, p { margin-top: 0; }
+        h1 { margin-bottom: 0.5rem; color: var(--navy); font-size: clamp(1.7rem, 3vw, 2.4rem); }
+        h2 { margin-bottom: 0.5rem; color: var(--navy); font-size: 1.2rem; }
+        p { line-height: 1.7; }
+        .description { margin-bottom: 0; color: var(--muted); }
+        .back-link, .source-link { color: var(--blue); font-weight: 700; text-decoration: none; white-space: nowrap; }
+        .back-link:hover, .source-link:hover { text-decoration: underline; }
+        .card { margin-bottom: 1rem; padding: 1.4rem; border: 1px solid rgba(120,130,142,.22); border-radius: 16px; background: rgba(255,255,255,.92); box-shadow: 0 8px 24px rgba(24,39,75,.06); }
+        .controls { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+        .controls input { width: min(100%, 480px); padding: .75rem .9rem; border: 1px solid var(--line); border-radius: 999px; outline: none; font: inherit; }
+        .controls input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
+        .count { margin: 0; color: var(--muted); font-size: .9rem; }
+        .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+        table { width: 100%; min-width: 1050px; border-collapse: collapse; background: #fff; font-size: 0.9rem; }
+        th, td { padding: .65rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+        th { color: #fff; background: var(--navy); font-size: .9rem; font-weight: 700; text-align: center; white-space: nowrap; }
+        td:first-child { width: 48px; color: var(--muted); text-align: center; }
+        td:nth-child(2) { min-width: 180px; font-weight: 700; }
+        td:nth-child(3) { min-width: 230px; }
+        td:nth-child(4) { min-width: 220px; white-space: nowrap; }
+        td:nth-child(5) { min-width: 270px; }
+        tbody tr:hover { background: #f8fbff; }
+        .empty { padding: 2rem; color: var(--muted); text-align: center; }
+        @media (max-width: 700px) { .page { width: min(100% - 1.25rem, 1320px); padding-top: 1.5rem; } .topbar, .controls { align-items: stretch; flex-direction: column; } .controls input { width: 100%; } .back-link { align-self: flex-start; } }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <header class="topbar">
+            <div>
+                <h1>건강식품공전 기능성 원료</h1>
+                <p class="description">기능성 원료별 기능, 1일 섭취량, 기능성분 및 지표성분 기준입니다.</p>
+            </div>
+            <a class="back-link" href="index.html">메인으로 돌아가기</a>
+        </header>
+        <section class="card">
+            <div class="controls">
+                <input id="searchInput" type="search" placeholder="원료명·기능·성분 검색" aria-label="기능성 원료 검색">
+                <p id="count" class="count">총 68개 항목 (표기 번호 1~69, 7번 제외)</p>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>No</th><th>기능성 원료</th><th>기능</th><th>1일 섭취량</th><th>기능성분/지표성분 함량</th></tr></thead>
+                    <tbody id="ingredientTable"></tbody>
+                </table>
+            </div>
+        </section>
+        <p class="source-link">자료 기준: 제공된 건강식품공전_기능성원료 표</p>
+    </main>
+    <script>
+        const items = [
+            [1, "인삼", "면역력 증진･피로개선\n뼈 건강\n간 건강", "3~80 mg\n25 mg\n28.8 mg", "진세노사이드 0.8 mg/g 이상 (Rg1과 Rb1의 합)"],
+            [2, "홍삼", "면역력 증진･피로개선\n혈소판 응집억제를 통한 혈액흐름･기억력 개선･항산화\n갱년기 여성 건강", "3~80 mg\n2.4~80 mg\n25~80 mg", "진세노사이드 2.5 mg/g 이상 (Rg1, Rb1 및 Rg3의 합)"],
+            [3, "엽록소 함유 식물", "피부건강･항산화", "총엽록소 8~150 mg", "맥류약엽 2.4 mg/g 이상, 알팔파 0.6 mg/g 이상\n식용해조류 및 기타 식용식물 1.2 mg/g 이상"],
+            [4, "클로렐라", "피부건강･항산화\n면역력 증진･혈중 콜레스테롤 개선", "총엽록소 8~150 mg\n총엽록소 125~150 mg", "총엽록소 10 mg/g 이상"],
+            [5, "스피루리나", "항산화\n혈중 콜레스테롤 개선", "총엽록소 10~80 mg\n총엽록소 40~80 mg", "총엽록소 5 mg/g 이상"],
+            [6, "녹차추출물", "항산화･체지방 감소･혈중 콜레스테롤 개선", "catechin 0.3~1 g", "catechin 200 mg/g 이상"],
+            [8, "프로폴리스추출물", "항산화･구강에서의 항균작용", "총 플라보노이드로서 20~40 mg", "총 플라보노이드 10 mg/g 이상"],
+            [9, "코엔자임Q10", "항산화･높은 혈압 감소", "코엔자임Q10으로서 90~100 mg", "CoenzymeQ10 980 mg/g 이상"],
+            [10, "대두이소플라본", "뼈 건강", "대두이소플라본 비배당체로서 24~27 mg", "Daidzin, Genistin, Glycitin 35 mg/g 이상"],
+            [11, "구아바잎 추출물", "식후 혈당상승 억제", "총 폴리페놀로서 120 mg", "총 폴리페놀 250 mg/g 이상"],
+            [12, "바나바잎 추출물", "식후 혈당상승 억제", "코로솔산으로서 0.45~1.3 mg", "코로솔산(Corosolic acid) 9 mg/g 이상"],
+            [13, "은행잎 추출물", "기억력 개선･혈행 개선", "플라보놀 배당체로서 28~36 mg", "flavonol glycoside 240 mg/g 이상\n퀘르세틴:켐페롤 = 1:0.8~1.2"],
+            [14, "밀크씨슬 추출물", "간 건강", "실리마린으로서 130 mg", "실리마린 320 mg/g 이상"],
+            [15, "달맞이꽃종자 추출물", "식후 혈당상승 억제", "PGG로서 4~8.4 mg", "PGG(Penta-O-galloyl beta-D-glucose) 20 mg/g 이상"],
+            [16, "EPA 및 DHA 함유 유지", "혈중 중성지질 개선･혈행 개선\n기억력 개선\n건조한 눈 개선", "0.5~2 g\n0.9~2 g\n0.6~2.24 g", "EPA와 DHA 합\n어류 180 mg/g 이상, 바닷물범 120 mg/g 이상, 조류 300 mg/g 이상"],
+            [17, "감마리놀렌산 함유 유지", "혈중 콜레스테롤 개선･혈행개선\n월경전 변화에 의한 불편한 상태 개선\n면역과민반응에 의한 피부상태 개선", "240~300 mg\n210~300 mg\n160~300 mg", "감마리놀렌산 70 mg/g 이상\n오메가 6 지방산(C18H30O2)"],
+            [18, "레시틴", "혈중 콜레스테롤 개선", "레시틴 1.2~18 g", "인지질(아세톤불용물로서) 360 mg/g 이상\n대두레시틴 포스파티딜콜린 100 mg/g 이상, 난황레시틴 600 mg/g 이상"],
+            [19, "스쿠알렌", "항산화", "스쿠알렌 10 g\n비타민 A, D 일일섭취량 최대함량 이내", "스쿠알렌 980 mg/g 이상"],
+            [20, "식물스테롤/식물스테롤에스테르", "혈중 콜레스테롤 개선", "식물스테롤 0.8~3 g\n식물스테롤에스테르 1.28~4.8 g", "식물스테롤 함량 900 mg/g 이상\n베타시토스테롤, 브라시카스테롤, 스티그마스테롤, 캄페스테롤"],
+            [21, "알콕시글리세롤 함유 상어간유", "면역력 증진", "알콕시글리세롤 0.6~2.7 g", "알콕시글리세롤 180 mg/g 이상"],
+            [22, "옥타코사놀 함유 유지", "지구력 증진", "옥타코사놀 7~40 mg", "옥타코사놀(미강) 100 mg/g 이상\n옥타코사놀(사탕수수) 540 mg/g 이상"],
+            [23, "매실추출물", "피로개선", "구연산 1~1.3 g", "구연산 300 mg/g 이상"],
+            [24, "공액리놀레산", "과체중인 성인의 체지방 감소", "공액리놀레산 1.4~4.2 g", "공액리놀레산 660 mg/g 이상"],
+            [25, "가르시니아캄보지아 추출물", "탄수화물이 지방으로 합성되는 것을 억제하여 체지방 감소", "HCA 750~1,500 mg", "총(-)-Hydroxycitric acid 600 mg/g 이상"],
+            [26, "마리골드꽃추출물", "노화로 인해 감소될 수 있는 황반색소밀도를 유지하여 눈 건강에 도움", "루테인 10~20 mg", "루테인(Lutein) 700 mg/g 이상"],
+            [27, "헤마토코쿠스 추출물", "눈의 피로도 개선", "아스타잔틴 4~12 mg", "아스타잔틴(Astaxanthin) 60 mg/g 이상"],
+            [28, "쏘팔메토 열매 추출물", "전립선 건강의 유지", "로르산 70~115 mg", "로르산(Lauric acid) 220 mg/g 이상"],
+            [29, "포스파티딜세린", "노화로 인해 저하된 인지력 개선\n자외선에 의한 피부 손상으로부터 피부 건강 유지\n피부보습", "포스파티딜세린 300 mg", "포스파티딜세린 380 mg/g 이상"],
+            [30, "글루코사민", "관절 및 연골 건강", "글루코사민염산염 또는 황산염으로서 1.5 g", "글루코사민 황산염 또는 염산염 980 mg/g 이상"],
+            [31, "NAG", "관절 및 연골건강\n피부보습에 도움", "NAG 0.5~1 g\nNAG 1 g", "N-아세틸글루코사민 950 mg/g 이상"],
+            [32, "뮤코다당･단백", "관절 및 연골건강", "뮤코다당･단백 1.2~1.5 g", "뮤코다당･단백 770 mg/g 이상\n단백질과 콘드로이친황산 비율 1.0~9.0(1:1~9:1)"],
+            [33, "구아검/구아검가수분해물", "혈중 콜레스테롤 개선･식후 혈당상승 억제･배변활동 원활\n장내 유익균 증식", "식이섬유 9.9~27 g\n식이섬유 4.6~27 g", "구아검/구아검가수분해물 식이섬유 660 mg/g 이상"],
+            [34, "글루코만난(곤약, 곤약만난)", "혈중 콜레스테롤 개선･배변활동 원활", "글루코만난 식이섬유 2.7~17 g", "식이섬유 690 mg/g 이상"],
+            [35, "귀리식이섬유", "혈중 콜레스테롤 개선\n식후 혈당상승 억제", "귀리식이섬유 3 g 이상\n귀리식이섬유 0.8 g 이상", "식이섬유 200 mg/g 이상"],
+            [36, "난소화성말토덱스트린", "식후 혈당상승 억제\n혈중 중성지질 개선\n배변활동 원활", "4.0~30 g(액상 4.0~44 g)\n5.0~30 g(액상 5.0~44 g)\n4.2~30 g(액상 4.2~44 g)", "난소화성말토덱스트린 식이섬유 850 mg/g 이상(액상 580 mg/g 이상)"],
+            [37, "대두식이섬유", "혈중 콜레스테롤 개선･배변활동 원활\n식후 혈당상승 억제", "20~60 g\n10~60 g", "식이섬유 600 mg/g 이상"],
+            [38, "목이버섯식이섬유", "배변활동 원활", "12 g", "식이섬유 450 mg/g 이상"],
+            [39, "밀식이섬유", "식후 혈당상승 억제\n배변활동 원활", "6~36 g\n36 g", "식이섬유 700 mg/g 이상"],
+            [40, "보리식이섬유", "배변활동 원활", "20~25 g", "식이섬유 500 mg/g 이상"],
+            [41, "아라비아검(아카시아검)", "배변활동 원활", "20 g", "식이섬유 800 mg/g 이상"],
+            [42, "옥수수겨식이섬유", "혈중 콜레스테롤 개선･식후 혈당상승 억제", "10 g", "식이섬유 800 mg/g 이상"],
+            [43, "이눌린/치커리추출물", "혈중 콜레스테롤 개선･식후 혈당상승 억제\n배변활동 원활", "7.2~20 g\n6.4~20 g", "식이섬유 800 mg/g 이상"],
+            [44, "차전자피식이섬유", "혈중 콜레스테롤 개선\n배변활동 원활", "6.0 g 이상\n5.0 g 이상", "식이섬유 790 mg/g 이상"],
+            [45, "폴리덱스트로스", "배변활동 원활", "4.5~12 g", "식이섬유 650 mg/g 이상"],
+            [46, "호로파종자식이섬유", "식후 혈당상승 억제", "12~50 g", "식이섬유 450 mg/g 이상"],
+            [47, "알로에 겔", "피부건강･장 건강･면역력 증진", "총다당체 함량 100~420 mg", "고형분 중 총 다당체 30 mg/g 이상"],
+            [48, "영지버섯 자실체 추출물", "혈행 개선", "베타글루칸 24~42 mg", "베타글루칸 10 mg/g 이상"],
+            [49, "키토산/키토올리고당", "혈중 콜레스테롤 개선\n체지방 감소", "키토산 1.2~4.5 g\n키토산 3.0~4.5 g, 키토올리고당 3 g", "키토산(글루코사민) 800 mg/g 이상\n키토올리고당 200 mg/g 이상"],
+            [50, "프락토올리고당(From Inulin)", "장내 유익균 증식 및 배변활동 원활", "프락토올리고당 3~8 g", "410 mg/g 이상(GF2, GF3, GF4 합한 량)"],
+            [51, "프로바이오틱스", "유산균 증식 및 유해균 억제･배변활동 원활･장 건강", "1억~100억 CFU", "생균 1억 CFU/g"],
+            [52, "홍국", "혈중 콜레스테롤 개선", "Monacolin K 4~8 mg", "Monacolin K 0.5 mg/g 이상"],
+            [53, "대두단백", "혈중 콜레스테롤 개선", "15 g 이상", "400 mg/g 이상(건고물 기준, Daidzein, Genistein 확인)"],
+            [54, "테아닌(Theanine)", "스트레스로 인한 긴장완화", "L-테아닌 200~250 mg/g 이상", "L-테아닌 940 mg/g 이상"],
+            [55, "엠에스엠(MSM, Methyl sulfonylmethane)", "관절 및 연골건강", "MSM 1.5~2.0 g", "980 mg/g 이상"],
+            [56, "폴리감마글루탐산(Poly-γ-glutamic acid)", "체내 칼슘흡수 촉진", "60~70 mg", "PGA 700 mg/g 이상"],
+            [57, "히알루론산", "피부보습\n자외선에 의한 피부손상으로부터 피부건강 유지", "120~240 mg(닭벼슬, 유산구균)\n240 mg(유산구균)", "900 mg/g(건조물) 이상"],
+            [58, "홍경천 추출물", "스트레스로 인한 피로개선", "홍경천추출물 200~600 mg", "Rosavin 20 mg/g 이상"],
+            [59, "빌베리 추출물", "눈의 피로 개선", "빌베리 추출물 160~240 mg", "총 Anthocyanosides 300 mg/g 이상\nAnthocyanosides 50~108 mg"],
+            [60, "마늘", "혈중 콜레스테롤 개선･혈압조절", "마늘 분말 0.6~1.0 g", "Alliin 10 mg/g 이상"],
+            [61, "라피노스", "장내 유익균의 증식과 유해균의 억제\n배변활동 원활", "3~5 g", "980 mg/g 이상"],
+            [62, "분말한천", "배변활동", "분말한천 2~5 g", "총 식이섬유 80.0% 이상\n총 식이섬유 1.6~4.0 g"],
+            [63, "크레아틴(Creatine)", "근력 운동 시 운동수행능력 향상", "3 g", "Creatine monohydrate 990 mg/g 이상"],
+            [64, "유단백가수분해물", "스트레스로 인한 긴장 완화", "유단백가수분해물 150 mg\nαS1-casein 2.7~4.1 mg", "알파에스1카제인(αS1-casein) 18 mg/g 이상"],
+            [65, "상황버섯추출물", "면역기능 개선", "상황버섯추출물 3.3 g\nβ-glucan 287.1~534.6 mg", "베타글루칸(β-glucan) 87 mg/g 이상"],
+            [66, "토마토추출물", "항산화", "all-trans-라이코펜 5.7~15 mg", "all-trans-라이코펜 40 mg/g 이상"],
+            [67, "곤약감자추출물", "피부 보습", "Glucosylceramide 1.2~1.8 mg", "Glucosylceramide 22.5 mg/g 이상"],
+            [68, "회화나무열매추출물", "갱년기 여성의 건강", "회화나무열매추출물 350 mg", "Sophoricoside 100 mg/g 이상"],
+            [69, "콜레우스포스콜리 추출물", "체지방 감소", "Forskolin 50 mg", "Forskolin 80 mg/g 이상"]
+        ];
+
+        const table = document.getElementById("ingredientTable");
+        const searchInput = document.getElementById("searchInput");
+        const count = document.getElementById("count");
+
+        function render() {
+            const query = searchInput.value.trim().toLowerCase();
+            table.replaceChildren();
+            let visible = 0;
+            items.forEach((item, index) => {
+                const text = item.join(" ").toLowerCase();
+                if (query && !text.includes(query)) return;
+                const row = document.createElement("tr");
+                item.forEach((value) => {
+                    const cell = document.createElement("td");
+                    cell.innerHTML = String(value || "-").replace(/\n/g, "<br>");
+                    row.appendChild(cell);
+                });
+                table.appendChild(row);
+                visible += 1;
+            });
+            if (!visible) table.innerHTML = '<tr><td class="empty" colspan="5">검색 결과가 없습니다.</td></tr>';
+            count.textContent = `총 ${visible}개 항목`;
+        }
+        searchInput.addEventListener("input", render);
+        render();
+    </script>
+</body>
+</html>

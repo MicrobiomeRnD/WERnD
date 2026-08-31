@@ -6,57 +6,159 @@
 <title>건강기능식품 신규 등록 현황</title>
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css");
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.cssh");
 
-    :root { color-scheme: light; --brand: #0b4f6c; --line: #e5e7eb; }
+    :root {
+        color-scheme: light;
+        --brand: #0b4f6c;
+        --brand-soft: #eaf5fb;
+        --line: #e5e7eb;
+        --text: #1f2937;
+        --muted: #667085;
+        --bg: #f4f7fb;
+        --accent: #f59e0b;
+        --success: #0f766e;
+    }
     * { box-sizing: border-box; }
     html { font-family: "Inter", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
-    body { font-family: inherit; background: #f5f7fa; margin: 0; color: #333; }
+    body {
+        font-family: inherit;
+        margin: 0;
+        background: linear-gradient(180deg, #f7f9fc 0%, #eef4f8 100%);
+        color: var(--text);
+    }
     button, input, select, textarea, table { font: inherit; }
-    .container { max-width: 1400px; margin: auto; padding: 30px; }
+    .container { max-width: 1400px; margin: auto; padding: 30px 20px 48px; }
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
     h1, h2 { color: var(--brand); }
-    h1 { margin-bottom: 8px; }
-    .meta { color: #667085; margin: 0; }
-    .summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 20px 0; }
-    .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.08); }
-    .card h2 { margin: 0; font-size: 18px; }
-    .card .value { font-size: 32px; font-weight: bold; margin-top: 10px; }
-    .section { margin-top: 40px; }
-    .table-wrap { overflow-x: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+    h1 {
+        margin: 0;
+        font-size: clamp(2rem, 2vw + 1rem, 2.8rem);
+        letter-spacing: -0.04em;
+    }
+    .subtitle {
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+        max-width: 720px;
+    }
     .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    gap: 1rem;
-}
-
-.back-link {
-    color: #2563eb;
-    text-decoration: none;
-    font-weight: 600;
-}
-    
-    
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+    }
+    .back-link {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .meta {
+        color: var(--muted);
+        margin: 0 0 20px;
+        font-size: 0.96rem;
+    }
+    .summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+        margin: 20px 0 10px;
+    }
+    .card {
+        background: white;
+        padding: 18px 20px;
+        border-radius: 16px;
+        box-shadow: 0 10px 24px rgba(12, 30, 52, 0.07);
+        border: 1px solid rgba(11, 79, 108, 0.06);
+    }
+    .card h2 {
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--muted);
+    }
+    .card .value {
+        font-size: clamp(1.8rem, 1.4vw + 1rem, 2.5rem);
+        font-weight: 800;
+        margin-top: 10px;
+        color: var(--brand);
+        letter-spacing: -0.04em;
+    }
+    .card .note {
+        margin-top: 8px;
+        font-size: 0.82rem;
+        color: var(--muted);
+    }
+    .section {
+        margin-top: 44px;
+    }
+    .section-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 12px;
+        flex-wrap: wrap;
+    }
+    .section-title h2 {
+        margin: 0;
+        font-size: 1.4rem;
+    }
+    .section-badge {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        background: var(--brand-soft);
+        color: var(--brand);
+        padding: 7px 11px;
+        font-size: 0.78rem;
+        font-weight: 700;
+    }
+    .table-wrap {
+        overflow-x: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+        border: 1px solid var(--line);
+    }
     table { width: 100%; border-collapse: collapse; background: white; }
     th { background: var(--brand); color: white; padding: 12px; white-space: nowrap; }
     td { padding: 10px; border-bottom: 1px solid var(--line); text-align: center; }
     #functionTable .highlight-row > td {
-        background-color: #fff7d6;
+        background-color: #fff9eb;
         font-weight: 700;
     }
     #productTable td:nth-child(2), #productTable td:nth-child(3), #productTable td:nth-child(4) { text-align: left; }
-    .empty { padding: 28px; color: #667085; }
+    .empty { padding: 28px; color: var(--muted); }
     .error { color: #b42318; }
     .percent {
-    color: #667085;
-    font-size: 0.85em;
-    font-weight: normal;
-}
-    
+        color: var(--muted);
+        font-size: 0.85em;
+        font-weight: normal;
+    }
+    .note-box {
+        margin: 18px 0 0;
+        padding: 12px 14px;
+        background: #f9fafb;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        color: var(--muted);
+        font-size: 0.9rem;
+    }
+    @media (max-width: 900px) {
+        .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 700px) {
-        .container { padding: 20px 12px; }
+        .container { padding: 20px 12px 32px; }
         .summary { grid-template-columns: 1fr; gap: 12px; }
+        .page-header { flex-direction: column; }
     }
 </style>
 </head>
@@ -65,13 +167,23 @@
     <div class="topbar">
         <a class="back-link" href="index.html">메인으로 돌아가기</a>
     </div>
-    <h1>건강기능식품 신규 등록 현황</h1>
-    <p id="dataMeta" class="meta" aria-live="polite">데이터를 불러오는 중입니다.</p>
 
+    <header class="page-header">
+        <div>
+            <h1>건강기능식품 신규 등록 현황</h1>
+            <p class="subtitle">최근 신규 등록된 건강기능식품을 기능성별·월별로 확인할 수 있는 대시보드입니다. 관심 기능성의 변화와 제품 동향을 빠르게 파악할 수 있도록 정리했습니다.</p>
+        </div>
+    </header>
+
+    <p id="dataMeta" class="meta" aria-live="polite">데이터를 불러오는 중입니다.</p>
     <div id="summary" class="summary" aria-label="월별 등록 건수"></div>
+    <div class="note-box">기준: 건강기능식품 신규 등록일 기준, 최근 3개월 데이터 기준으로 정리했습니다.</div>
 
     <section class="section">
-        <h2>월별 기능성 분류</h2>
+        <div class="section-title">
+            <h2>월별 기능성 분류</h2>
+            <span class="section-badge">기능성 비중</span>
+        </div>
         <div class="table-wrap">
             <table>
                 <thead>
@@ -83,7 +195,10 @@
     </section>
 
     <section class="section">
-        <h2>주요 신규 제품</h2>
+        <div class="section-title">
+            <h2>주요 신규 제품</h2>
+            <span class="section-badge">최신 100건</span>
+        </div>
         <div class="table-wrap">
             <table>
                 <thead><tr><th>등록일</th><th>제품명</th><th>제조사</th><th>기능성</th></tr></thead>
@@ -182,7 +297,6 @@ function categoryKeysOf(product) {
         if (!data || !Array.isArray(data.products)) throw new Error("products 배열이 없습니다.");
         const products = data.products.slice().sort((a, b) => text(b.rptYmd, "").localeCompare(text(a.rptYmd, "")));
         const dataMonths = [...new Set(products.map(monthOf).filter(Boolean))].sort();
-        // 기존 시안처럼 항상 최근 3개월을 보여주며, 데이터가 없는 달은 0건으로 표시합니다.
         const latest = dataMonths[dataMonths.length - 1];
         const months = latest ? Array.from({ length: 3 }, (_, index) => {
             const date = new Date(Number(latest.slice(0, 4)), Number(latest.slice(5)) - 3 + index, 1);
@@ -198,77 +312,113 @@ function categoryKeysOf(product) {
             const keys = categoryKeysOf(product);
             for (const key of keys) {
                 stats[month][key]++;
-        }
+            }
         }
 
         const summaryMonths = months;
-        $("summary").replaceChildren(...summaryMonths.map(month => {
-            const card = document.createElement("div");
-            card.className = "card";
+        const totalCount = summaryMonths.reduce((sum, month) => sum + counts[month], 0);
+        const monthAverage = summaryMonths.length ? Math.round(totalCount / summaryMonths.length) : 0;
+        const topCategory = categories
+            .map(key => ({ key, value: summaryMonths.reduce((sum, month) => sum + stats[month][key], 0) }))
+            .filter(item => item.value > 0)
+            .sort((a, b) => b.value - a.value)[0];
+        const categoryLabelMap = {
+            multi: "다중기능성",
+            probiotic: "장 건강",
+            diet: "체지방",
+            joint: "관절",
+            eye: "눈",
+            immunity: "면역",
+            cognitive: "인지기능",
+            triglyceride: "혈중 중성지방",
+            bloodflow: "혈행",
+            cholesterol: "콜레스테롤",
+            bloodpressure: "혈압",
+            sleep: "수면",
+            etc: "기타"
+        };
+
+        const summaryCards = [
+            {
+                label: "최근 3개월 등록",
+                value: `${totalCount.toLocaleString("ko-KR")}건`,
+                note: summaryMonths.length ? `${summaryMonths[0]} ~ ${summaryMonths[summaryMonths.length - 1]}` : "데이터 없음"
+            },
+            {
+                label: "월평균",
+                value: `${monthAverage.toLocaleString("ko-KR")}건`,
+                note: "최근 3개월 평균"
+            },
+            {
+                label: topCategory ? categoryLabelMap[topCategory.key] : "기능성 없음",
+                value: topCategory ? `${topCategory.value.toLocaleString("ko-KR")}건` : "0건",
+                note: "상위 기능성"
+            },
+            {
+                label: "최신 데이터",
+                value: summaryMonths.length ? `${summaryMonths[summaryMonths.length - 1].slice(0, 4)}.${summaryMonths[summaryMonths.length - 1].slice(5)}` : "-",
+                note: "마지막 등록월"
+            }
+        ];
+
+        $("summary").replaceChildren(...summaryCards.map(card => {
+            const item = document.createElement("div");
+            item.className = "card";
             const heading = document.createElement("h2");
-            heading.textContent = `${month.slice(0, 4)}년 ${Number(month.slice(5))}월`;
+            heading.textContent = card.label;
             const value = document.createElement("div");
             value.className = "value";
-            value.textContent = `${counts[month].toLocaleString("ko-KR")}건`;
-            card.append(heading, value);
-            return card;
+            value.textContent = card.value;
+            const note = document.createElement("div");
+            note.className = "note";
+            note.textContent = card.note;
+            item.append(heading, value, note);
+            return item;
         }));
 
         if (!summaryMonths.length) $("summary").innerHTML = '<div class="card empty">표시할 등록일 데이터가 없습니다.</div>';
         const rowInfo = [
-    ["total", "총 제품수"],
-    ["multi", "다중기능성"],
-    ["probiotic", "장 건강"],
-    ["diet", "체지방"],
-    ["joint", "관절"],
-    ["eye", "눈"],
-    ["immunity", "면역"],
-    ["cognitive", "인지기능/기억력"],
-    ["triglyceride", "혈중 중성지방"],
-    ["bloodflow", "혈행"],
-    ["cholesterol", "콜레스테롤"],
-    ["bloodpressure", "혈압"],
-    ["sleep", "수면"],
-    ["etc", "기타"]
-];
+            ["total", "총 제품수"],
+            ["multi", "다중기능성"],
+            ["probiotic", "장 건강"],
+            ["diet", "체지방"],
+            ["joint", "관절"],
+            ["eye", "눈"],
+            ["immunity", "면역"],
+            ["cognitive", "인지기능/기억력"],
+            ["triglyceride", "혈중 중성지방"],
+            ["bloodflow", "혈행"],
+            ["cholesterol", "콜레스테롤"],
+            ["bloodpressure", "혈압"],
+            ["sleep", "수면"],
+            ["etc", "기타"]
+        ];
 
-$("functionHeader").innerHTML =
-    "<th>기능성</th>" +
-    months.map(month => `<th>${month}</th>`).join("");
+        $("functionHeader").innerHTML =
+            "<th>기능성</th>" +
+            months.map(month => `<th>${month}</th>`).join("");
 
-$("functionTable").innerHTML =
-rowInfo.map(([key,label]) => `
-<tr class="${
-    key === "total" || key === "multi"
-        ? "highlight-row"
-        : ""
-}">
-<td>${label}</td>
-${months.map(month => {
+        $("functionTable").innerHTML = rowInfo.map(([key, label]) => `
+            <tr class="${key === "total" || key === "multi" ? "highlight-row" : ""}">
+                <td>${label}</td>
+                ${months.map(month => {
+                    if (key === "total") {
+                        return `<td>${counts[month]}</td>`;
+                    }
 
-    if (key === "total") {
-        return `<td>${counts[month]}</td>`;
-    }
+                    const value = stats[month][key];
+                    const total = counts[month];
+                    const percent = total > 0 ? ((value / total) * 100).toFixed(1) : "0.0";
 
-    const value = stats[month][key];
-    const total = counts[month];
-
-    const percent =
-        total > 0
-            ? ((value / total) * 100).toFixed(1)
-            : "0.0";
-
-    return `
-        <td>
-            ${value}
-            <span class="percent">(${percent}%)</span>
-        </td>
-    `;
-
-}).join("")}
-</tr>
-`).join("");
-
+                    return `
+                        <td>
+                            ${value}
+                            <span class="percent">(${percent}%)</span>
+                        </td>
+                    `;
+                }).join("")}
+            </tr>
+        `).join("");
 
         const table = $("productTable");
         table.replaceChildren();
@@ -277,11 +427,21 @@ ${months.map(month => {
             const row = document.createElement("tr");
             [product.rptYmd || product.등록일자, product.prdlstNm || product.제품명, product.bsshNm || product.업소명,
              product.ftnltClsfCdNm || product.PRIMARY_FNCLTY || product.FNCLTY_CN]
-                .forEach(value => { const cell = document.createElement("td"); cell.textContent = text(value); row.append(cell); });
+                .forEach(value => {
+                    const cell = document.createElement("td");
+                    cell.textContent = text(value);
+                    row.append(cell);
+                });
             table.append(row);
         }
 
-        const generated = text(data.generated_at, "생성 시각 정보 없음");
+        const now = new Date();
+        const generated = [
+            now.getFullYear(),
+            String(now.getMonth() + 1).padStart(2, "0"),
+            String(now.getDate()).padStart(2, "0")
+        ].join("-") + ` ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}:${String(now.getSeconds()).padStart(2, "0")}`;
+
         const range = months.length ? `${months[0]} ~ ${months[months.length - 1]}` : "등록일 없음";
         $("dataMeta").textContent = `등록일 기준: ${range} · 총 ${products.length.toLocaleString("ko-KR")}건 · 데이터 생성: ${generated}${source}`;
     }
